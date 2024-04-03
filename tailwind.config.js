@@ -6,7 +6,9 @@ export default {
     extend: {
       colors: {
         "brownish-1": "#3c1b08",
+        "brownish-2": "#180b03",
         blackish: "#333",
+        whitesmoke: "#F5F5F5",
       },
     },
   },

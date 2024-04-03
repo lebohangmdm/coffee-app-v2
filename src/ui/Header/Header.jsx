@@ -1,11 +1,11 @@
 import { Button } from "@mui/material";
 import Logo from "../Logo";
-import SearchIcon from "@mui/icons-material/Search";
 import SearchBar from "./SearchBar";
+import MobileNav from "./MobileNav";
 
 const Header = () => {
   return (
-    <header className="">
+    <header className="p-6">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-8 lg:gap-10">
@@ -37,7 +37,7 @@ const Header = () => {
             <SearchBar />
             <Button
               variant="outlined"
-              className="rounded-full px-4 border-brownish-1 border-1 border-opacity-70  text-brownish-1 bg-transparent hover:border-opacity-100"
+              className="rounded-full  px-4 border-brownish-1 border-1 border-opacity-70  text-brownish-1 bg-transparent hover:border-opacity-100 hover:text-brownish-2;"
             >
               Sign in
             </Button>
@@ -45,6 +45,8 @@ const Header = () => {
               Join us
             </Button>
           </div>
+
+          <MobileNav />
         </div>
       </div>
     </header>
