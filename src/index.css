@@ -7,3 +7,17 @@
     @apply text-xl font-semibold text-blackish no-underline capitalize hover:text-amber-950 transition-all duration-150;
   }
 }
+
+.bg-coffee {
+  background-image: linear-gradient(
+      to right,
+      rgba(51, 51, 51, 0.6),
+      rgba(60, 27, 8, 0.2)
+    ),
+    url("/coffeee.webp");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: calc(100vh - 24px);
+}
