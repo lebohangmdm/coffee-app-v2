@@ -1,11 +1,14 @@
+import Home from "./Pages/Home";
 import Header from "./ui/Header/Header";
-import Home from "./ui/Pages/Home";
+import Featured from "./ui/Section/Featured";
 
 function App() {
   return (
     <>
       <Header />
-      <Home />
+      <main>
+        <Home />
+      </main>
     </>
   );
 }

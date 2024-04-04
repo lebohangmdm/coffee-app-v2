@@ -1,8 +1,6 @@
-import React from "react";
-
-const Home = () => {
+const Hero = () => {
   return (
-    <section className="bg-coffee">
+    <section className="bg-coffee pt-12">
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex flex-col space-y-8 w-3/4 sm:w-1/2 pt-16">
           <h1 className="text-4xl text-white  uppercase md:text-5xl lg:text-6xl">
@@ -20,4 +18,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Hero;
