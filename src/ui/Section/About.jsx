@@ -3,7 +3,7 @@ import React from "react";
 
 const About = () => {
   return (
-    <section className="pt-16">
+    <section className="pt-16 pb-8">
       <div className="align-element">
         <div className="flex flex-col gap-12 lg:flex-row">
           <div className="space-y-4 md:space-y-6 lg:space-y-8 lg:w-[40%]">

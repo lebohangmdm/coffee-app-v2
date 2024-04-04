@@ -17,10 +17,16 @@
       rgba(51, 51, 51, 0.6),
       rgba(60, 27, 8, 0.2)
     ),
-    url("/coffeee.webp");
+    url("/coffee.webp");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   width: 100%;
   height: calc(100vh - 24px);
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 3rem;
 }
