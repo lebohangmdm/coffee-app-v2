@@ -30,3 +30,17 @@
   grid-template-columns: 200px 1fr;
   gap: 3rem;
 }
+
+.bg-menu {
+  background-image: linear-gradient(
+      to right,
+      rgba(51, 51, 51, 0.3),
+      rgba(60, 27, 8, 0.2)
+    ),
+    url("/hero-menu.webp");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: calc(100vh - 24px);
+}

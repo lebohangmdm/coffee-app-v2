@@ -1,10 +1,11 @@
 import DisplayOptions from "../ui/DisplayOptions";
 import SortSelectOptions from "../ui/SortSelectOptions";
+import Card from "../ui/Card";
 
 const Menu = () => {
   return (
     <>
-      <section className="py-16">
+      <section className="py-16 bg-menu">
         <div className="align-element mb-12 md">
           <div className="flex flex-col space-y-4 md:space-y-6 md:w-3/4 lg:w-1/2">
             <h1 className="text-4xl text-brownish-2  uppercase md:text-5xl lg:text-6xl">
@@ -36,10 +37,18 @@ const Menu = () => {
                 <li>Frappuccino</li>
               </ul>
             </div>
-            <div>
+            <div className="flex flex-col space-y-4 md:spacey-6">
               <div className="flex justify-between items-center">
                 <DisplayOptions />
                 <SortSelectOptions />
+              </div>
+              <div className="grid item-center gap-8 md:grid-2-cols md:gap-10 lg:gap-12 lg:grid-cols-3 ">
+                <Card full={"full"} />
+                <Card full={"full"} />
+                <Card full={"full"} />
+                <Card full={"full"} />
+                <Card full={"full"} />
+                <Card full={"full"} />
               </div>
             </div>
           </div>

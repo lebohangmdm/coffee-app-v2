@@ -6,7 +6,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 
-export default function MediaCard() {
+export default function MediaCard({ full }) {
   return (
     <Card sx={{ maxWidth: 345, marginInline: "auto" }}>
       <CardMedia
@@ -24,8 +24,14 @@ export default function MediaCard() {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">$ 12</Button>
-        <Button size="small">Add to cart</Button>
+        {!full && <Button size="small">$ 12</Button>}
+
+        <Button
+          size="small"
+          className={`${full} ? w-full : "" bg-brownish-1 text-white hover:border-brownish-2 transition-all duration-160`}
+        >
+          Add to cart
+        </Button>
       </CardActions>
     </Card>
   );

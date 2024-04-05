@@ -7,28 +7,38 @@ const value = "";
 const SortSelectOptions = () => {
   const options = ["a-z", "z-a", "high", "low"];
   // props = { label, value, options }
+  const [selectedValue, setSelectedValue] = React.useState("");
+
+  const handleChange = (event) => {
+    setSelectedValue(event.target.value);
+  };
+
   return (
-    <FormControl className="w-[200px]">
-      <InputLabel shrink>{label}</InputLabel>
-      <Select
-        // value={value}
-        defaultValue={"a-z"}
-        variant="standard"
-        size="small"
-        MenuProps={{
-          PaperProps: {
-            style: {
-              maxHeight: 300,
-              width: "20ch",
-            },
+    <FormControl
+      className="w-[200px] focus-within:ring ring-1 ring-red-500"
+      size="small"
+      sx={{
+        "& .MuiOutlinedInput-root": {
+          "&:focus-within": {
+            borderColor: "red",
           },
-        }}
+        },
+      }}
+    >
+      <InputLabel id="demo-simple-select-label">Sort By</InputLabel>
+      <Select
+        labelId="demo-simple-select-label"
+        id="demo-simple-select"
+        value={selectedValue}
+        onChange={handleChange}
       >
-        {options.map((option) => (
-          <MenuItem key={option.value} value={option.value}>
-            {option.label}
-          </MenuItem>
-        ))}
+        <MenuItem value="">
+          <em>None</em>
+        </MenuItem>
+        <MenuItem value={10}>{"a-z"}</MenuItem>
+        <MenuItem value={20}>{"z-a"}</MenuItem>
+        <MenuItem value={30}>{"high"}</MenuItem>
+        <MenuItem value={30}>{"low"}</MenuItem>
       </Select>
     </FormControl>
   );
