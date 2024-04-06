@@ -1,4 +1,5 @@
 import { About } from "./Pages/About";
+import Contact from "./Pages/Contact";
 import Home from "./Pages/Home";
 import Menu from "./Pages/Menu";
 import Header from "./ui/Header/Header";
@@ -11,7 +12,8 @@ function App() {
       <main>
         {/* <Home /> */}
         {/* <Menu /> */}
-        <About />
+        {/* <About /> */}
+        <Contact />
       </main>
     </>
   );
