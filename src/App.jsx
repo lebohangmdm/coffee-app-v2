@@ -1,3 +1,4 @@
+import { About } from "./Pages/About";
 import Home from "./Pages/Home";
 import Menu from "./Pages/Menu";
 import Header from "./ui/Header/Header";
@@ -9,7 +10,8 @@ function App() {
       <Header />
       <main>
         {/* <Home /> */}
-        <Menu />
+        {/* <Menu /> */}
+        <About />
       </main>
     </>
   );
