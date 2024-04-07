@@ -2,36 +2,16 @@ import { Button } from "@mui/material";
 import Logo from "../Logo";
 import SearchBar from "./SearchBar";
 import MobileNav from "./MobileNav";
+import NavLinks from "./NavLinks";
 
 const Header = () => {
   return (
-    <header className="p-6 relative">
+    <header className="p-6 relative bg-whitesmoke">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-8 lg:gap-10">
             <Logo />
-            <nav className="">
-              <ul className="hidden md:flex items-center gap-8 lg:gap-12 list-none">
-                <li>
-                  {" "}
-                  <a href="" className="nav-link">
-                    menu
-                  </a>
-                </li>
-                <li>
-                  {" "}
-                  <a href="" className="nav-link">
-                    About us
-                  </a>
-                </li>
-                <li>
-                  {" "}
-                  <a href="" className="nav-link">
-                    Contact
-                  </a>
-                </li>
-              </ul>
-            </nav>
+            <NavLinks />
           </div>
           <div className=" hidden md:flex items-center gap-3 ">
             <SearchBar />

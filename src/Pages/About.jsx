@@ -1,8 +1,8 @@
 import React from "react";
 
-export const About = () => {
+const About = () => {
   return (
-    <section className="pt-16">
+    <section className="pt-16 bg-whitesmoke">
       <div className="align-element">
         <div className="flex flex-col-reverse gap-12 lg:flex-row lg:items-center ">
           <div className="lg:w-[50%]">
@@ -37,3 +37,5 @@ export const About = () => {
     </section>
   );
 };
+
+export default About;

@@ -7,8 +7,8 @@ const Menu = () => {
     <>
       <section className="py-16 bg-menu">
         <div className="align-element mb-12 md">
-          <div className="flex flex-col space-y-4 md:space-y-6 md:w-3/4 lg:w-1/2">
-            <h1 className="text-4xl text-brownish-2  uppercase md:text-5xl lg:text-6xl">
+          <div className="flex flex-col text-white space-y-4 md:space-y-6 md:w-3/4 lg:w-1/2">
+            <h1 className=" text-4xl   uppercase md:text-5xl lg:text-6xl">
               Our Coffee and Crafting
             </h1>
             <p className="md:text-lg">

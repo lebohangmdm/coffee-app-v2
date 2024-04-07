@@ -1,26 +1,41 @@
-import { About } from "./Pages/About";
-import Contact from "./Pages/Contact";
-import Home from "./Pages/Home";
-import Login from "./Pages/Login";
-import Menu from "./Pages/Menu";
-import Register from "./Pages/Register";
-import Header from "./ui/Header/Header";
-import Featured from "./ui/Section/Featured";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { About, Contact, Home, Login, Menu, Register } from "./Pages";
+import AppLayout from "./ui/AppLayout";
+
+const router = createBrowserRouter([
+  {
+    element: <AppLayout />,
+    children: [
+      {
+        path: "/",
+        element: <Home />,
+      },
+      {
+        path: "menu",
+        element: <Menu />,
+      },
+      {
+        path: "about",
+        element: <About />,
+      },
+      {
+        path: "contact",
+        element: <Contact />,
+      },
+      {
+        path: "register",
+        element: <Register />,
+      },
+      {
+        path: "login",
+        element: <Login />,
+      },
+    ],
+  },
+]);
 
 function App() {
-  return (
-    <>
-      <Header />
-      <main>
-        {/* <Home /> */}
-        {/* <Menu /> */}
-        {/* <About /> */}
-        {/* <Contact /> */}
-        {/* <Register /> */}
-        <Login />
-      </main>
-    </>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;

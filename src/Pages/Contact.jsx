@@ -4,7 +4,7 @@ import { TextField, Button } from "@mui/material";
 const Contact = () => {
   return (
     <section className="pt-16">
-      <div className="align-element">
+      <div className="align-element ">
         <div className="flex flex-col  gap-8 md:flex-row lg:gap-14">
           <div className="md:w-[50%]">
             <h3 className="text-2xl font-semibold mb-2 text-brownish-1">
