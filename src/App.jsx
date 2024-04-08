@@ -3,6 +3,7 @@ import { About, Contact, Home, Login, Menu, Register } from "./Pages";
 
 import AppLayout from "./ui/AppLayout";
 import { loader as featuredLoader } from "./Pages/Home";
+import { loader as menuLoader } from "./Pages/Menu";
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,7 @@ const router = createBrowserRouter([
       {
         path: "menu",
         element: <Menu />,
+        loader: menuLoader,
       },
       {
         path: "about",

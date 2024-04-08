@@ -1,8 +1,13 @@
 import DisplayOptions from "../ui/DisplayOptions";
 import SortSelectOptions from "../ui/SortSelectOptions";
-import Card from "../ui/Card";
+import { getCoffees } from "../services/getCoffees";
+import { useLoaderData } from "react-router-dom";
+import MediaCard from "../ui/MediaCard";
 
 const Menu = () => {
+  const coffees = useLoaderData();
+  const categories = new Set(coffees.map((coffee) => coffee.category));
+  const allCategories = ["all", ...categories];
   return (
     <>
       <section className="py-16 bg-menu">
@@ -23,18 +28,22 @@ const Menu = () => {
         </div>
       </section>
 
-      <section className="pt-16">
+      <section className="py-16">
         <div className="align-element">
           <div className="grid-container">
             <div className="">
               <p className="text-xl font-semibold mb-4">Drinks</p>
               <ul className="flex flex-col space-y-2">
-                <li>All</li>
-                <li>Hot Coffee</li>
-                <li>Cold Coffee</li>
-                <li>Hot Tea</li>
-                <li>Cold Tea</li>
-                <li>Frappuccino</li>
+                {allCategories.map((category) => {
+                  return (
+                    <li
+                      key={category}
+                      className="font-medium uppercase cursor-pointer"
+                    >
+                      {category}
+                    </li>
+                  );
+                })}
               </ul>
             </div>
             <div className="flex flex-col space-y-4 md:spacey-6">
@@ -43,12 +52,11 @@ const Menu = () => {
                 <SortSelectOptions />
               </div>
               <div className="grid item-center gap-8 md:grid-2-cols md:gap-10 lg:gap-12 lg:grid-cols-3 ">
-                <Card full={"full"} />
-                <Card full={"full"} />
-                <Card full={"full"} />
-                <Card full={"full"} />
-                <Card full={"full"} />
-                <Card full={"full"} />
+                {coffees.map((coffee) => {
+                  return (
+                    <MediaCard key={coffee.id} coffee={coffee} number={110} />
+                  );
+                })}
               </div>
             </div>
           </div>
@@ -59,3 +67,8 @@ const Menu = () => {
 };
 
 export default Menu;
+
+export const loader = async () => {
+  const data = await getCoffees();
+  return data;
+};
