@@ -1,8 +1,11 @@
 import React from "react";
 import Card from "../Card";
 import CardMedia from "../Card";
+import { useLoaderData } from "react-router-dom";
 
 const Featured = () => {
+  const featured = useLoaderData();
+
   return (
     <section className="py-16">
       <div className="align-element">
@@ -12,9 +15,9 @@ const Featured = () => {
           </h1>
         </div>
         <div className="grid md:grid-cols-2  lg:grid-cols-3 gap-6 md:gap-8 lg:gap-12 ">
-          <CardMedia />
-          <CardMedia />
-          <CardMedia />
+          {featured.map((coffee) => {
+            return <CardMedia key={coffee.id} coffee={coffee} />;
+          })}
         </div>
       </div>
     </section>

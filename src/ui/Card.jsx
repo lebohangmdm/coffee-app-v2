@@ -6,29 +6,28 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 
-export default function MediaCard({ full }) {
+export default function MediaCard({ coffee, cartFull }) {
   return (
     <Card sx={{ maxWidth: 345, marginInline: "auto" }}>
       <CardMedia
         sx={{ height: 180 }}
-        image="/honey-spiced-latte.jpg"
-        title="Honey Spiced Latte"
+        image={coffee.image}
+        title={coffee.name}
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          Honey Spiced Latte
+          {coffee.name}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          We combine rich molasses, golden honey and a host of spices to create
-          this warm and comforting beverage.
+          {coffee.description}
         </Typography>
       </CardContent>
       <CardActions>
-        {!full && <Button size="small">$ 12</Button>}
+        {cartFull && <Button size="small">R {coffee.unitPrice}</Button>}
 
         <Button
           size="small"
-          className={`${full} ? w-full : "" bg-brownish-1 text-white hover:border-brownish-2 transition-all duration-160`}
+          className={`${cartFull} ? w-full : "" bg-brownish-1 text-white hover:border-brownish-2 transition-all duration-160`}
         >
           Add to cart
         </Button>

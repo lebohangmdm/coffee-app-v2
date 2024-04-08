@@ -1,6 +1,8 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { About, Contact, Home, Login, Menu, Register } from "./Pages";
+
 import AppLayout from "./ui/AppLayout";
+import { loader as featuredLoader } from "./Pages/Home";
 
 const router = createBrowserRouter([
   {
@@ -9,6 +11,7 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+        loader: featuredLoader,
       },
       {
         path: "menu",

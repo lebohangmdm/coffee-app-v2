@@ -2,6 +2,7 @@ import React from "react";
 import Hero from "../ui/Section/Hero";
 import Featured from "../ui/Section/Featured";
 import About from "../ui/Section/About";
+import { getCoffees } from "../services/getCoffees";
 
 const Home = () => {
   return (
@@ -11,6 +12,13 @@ const Home = () => {
       <About />
     </main>
   );
+};
+
+export const loader = async ({ request }) => {
+  const data = await getCoffees();
+  const featured = data.filter((coffee) => coffee.featured === true);
+
+  return featured;
 };
 
 export default Home;

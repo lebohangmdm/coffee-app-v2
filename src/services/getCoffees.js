@@ -1,3 +1,5 @@
+import supabase from "./supabase";
+
 export async function getCoffees() {
   const { data, error } = await supabase.from("coffees").select("*");
 
