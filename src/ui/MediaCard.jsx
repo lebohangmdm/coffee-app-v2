@@ -6,18 +6,18 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 
-export default function MediaCard({ coffee, cartFull, number }) {
+export default function MediaCard({ coffee, cart, number }) {
   const [showMore, setShowMore] = useState(false);
-
-  const full = cartFull;
-  console.log(full);
 
   const description = showMore
     ? coffee.description
     : coffee.description.slice(0, number);
 
   return (
-    <Card sx={{ maxWidth: 345, marginInline: "auto" }}>
+    <Card
+      sx={{ maxWidth: 345, marginInline: "auto" }}
+      className="transform hover:scale-110 transition-all duration-200 mt-4"
+    >
       <CardMedia
         sx={{ height: 180 }}
         image={coffee.image}
@@ -40,8 +40,8 @@ export default function MediaCard({ coffee, cartFull, number }) {
           show more
         </Button>
       </CardContent>
-      <CardActions className="flex items-center justify-between">
-        {!cartFull && (
+      <CardActions className="flex items-center justify-between px-4">
+        {!cart && (
           <Typography
             variant="body2"
             color="text.secondary"
@@ -51,13 +51,15 @@ export default function MediaCard({ coffee, cartFull, number }) {
           </Typography>
         )}
 
-        <button
-          className={`${
-            cartFull ? "w-full" : " "
-          } text-base font-medium rounded-sm capitalize py-1 px-4  bg-brownish-1 text-white hover:border-brownish-2 transition-all duration-160`}
-        >
-          Add to Cart
-        </button>
+        {cart && (
+          <button
+            className={`${
+              cart ? "w-full" : " "
+            } text-base font-medium rounded-sm capitalize py-1 px-4  bg-brownish-1 text-white hover:border-brownish-2 transition-all duration-160`}
+          >
+            Add to Cart
+          </button>
+        )}
       </CardActions>
     </Card>
   );

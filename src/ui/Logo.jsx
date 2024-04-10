@@ -1,7 +1,11 @@
 import { Link } from "react-router-dom";
 
 const Logo = () => {
-  return <a className="text-3xl font-semibold">Coffee ☕</a>;
+  return (
+    <Link to="/" className="text-3xl font-semibold">
+      Kofe ☕
+    </Link>
+  );
 };
 
 export default Logo;

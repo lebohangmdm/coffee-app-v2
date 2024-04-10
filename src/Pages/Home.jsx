@@ -3,6 +3,7 @@ import Hero from "../ui/Section/Hero";
 import Featured from "../ui/Section/Featured";
 import About from "../ui/Section/About";
 import { getCoffees } from "../services/getCoffees";
+import { useLoaderData } from "react-router-dom";
 
 const Home = () => {
   return (
@@ -14,10 +15,9 @@ const Home = () => {
   );
 };
 
-export const loader = async ({ request }) => {
+export const loader = async () => {
   const data = await getCoffees();
   const featured = data.filter((coffee) => coffee.featured === true);
-
   return featured;
 };
 

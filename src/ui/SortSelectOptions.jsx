@@ -15,12 +15,12 @@ const SortSelectOptions = () => {
 
   return (
     <FormControl
-      className="w-[200px] focus-within:ring ring-1 ring-red-500"
+      className="w-[200px]  "
       size="small"
       sx={{
         "& .MuiOutlinedInput-root": {
           "&:focus-within": {
-            borderColor: "red",
+            borderColor: "#180b03",
           },
         },
       }}

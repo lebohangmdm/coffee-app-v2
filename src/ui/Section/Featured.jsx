@@ -19,7 +19,7 @@ const Featured = () => {
               <MediaCard
                 key={coffee.id}
                 coffee={coffee}
-                cartFull={"full"}
+                cart={"cart"}
                 number={125}
               />
             );

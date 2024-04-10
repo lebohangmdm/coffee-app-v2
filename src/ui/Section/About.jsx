@@ -25,7 +25,7 @@ const About = () => {
           </div>
 
           <div className="grid grid-cols-2  gap-4 lg:w-[60%] lg:gap-12">
-            <div className="grid justify-end">
+            <div className="grid  lg:justify-end">
               <h3 className="text-xl sm:text-2xl font-semibold text-brownish-1 md:text-3xl mb-6">
                 Opening Hours
               </h3>

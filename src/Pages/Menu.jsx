@@ -51,10 +51,10 @@ const Menu = () => {
                 <DisplayOptions />
                 <SortSelectOptions />
               </div>
-              <div className="grid item-center gap-8 md:grid-2-cols md:gap-10 lg:gap-12 lg:grid-cols-3 ">
+              <div className="grid item-center gap-8 md:grid-2-cols md:gap-10 lg:gap-12 lg:grid-cols-3  ">
                 {coffees.map((coffee) => {
                   return (
-                    <MediaCard key={coffee.id} coffee={coffee} number={110} />
+                    <MediaCard key={coffee.id} coffee={coffee} number={50} />
                   );
                 })}
               </div>
