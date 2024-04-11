@@ -25,6 +25,22 @@
   height: calc(100vh - 24px);
 }
 
+/* background-color: :root {
+--black: black;
+--text-dark: #0e0e0e;
+--primary: #c8935f;
+--primary-light: #fff7ef;
+--white: white;
+--light-gray: #f9f9fa;
+--gray: #e9e9e9;
+--dark-gray: #afafaf;
+--dark-gray-50: rgba(175, 175, 175, .5);
+--white-50: rgba(255, 255, 255, .5); */
+.height-vh {
+  background-color: #fff7ef;
+  height: calc(100vh - 24px);
+}
+
 .grid-container {
   display: grid;
   grid-template-columns: 200px 1fr;

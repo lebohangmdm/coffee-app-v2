@@ -16,6 +16,9 @@ export default {
         blackish: "#333",
         whitesmoke: "#F5F5F5",
       },
+      fontFamily: {
+        serif: "oswald, sans-serif",
+      },
     },
   },
   plugins: [],
