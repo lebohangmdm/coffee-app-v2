@@ -12,6 +12,7 @@ const NumberInput = () => {
           type="number"
           className="w-14 text-xl text-brownish-2 p-2 bg-transparent"
           defaultValue={1}
+          min={1}
         />
       </div>
       <Button

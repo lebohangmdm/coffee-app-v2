@@ -16,18 +16,21 @@ export default function MediaCard({ coffee, cart, number }) {
 
   return (
     <Link to={`/menu/${coffee.id}`}>
-      <Card
-        sx={{ maxWidth: 300, marginInline: "auto" }}
-        className="transform hover:scale-105 transition-all duration-200 mt-4"
-      >
+      <Card sx={{ maxWidth: 350, marginInline: "auto" }}>
         <CardMedia
-          sx={{ height: 200 }}
+          sx={{ height: 250, objectFit: "cover" }}
           image={coffee.image}
           title={coffee.name}
-          className="object-cover"
         />
         <CardContent>
-          <p className="text-lg font-medium font-serif">{coffee.name}</p>
+          <Typography
+            gutterBottom
+            variant="h5"
+            component="div"
+            className="font-serif"
+          >
+            {coffee.name}
+          </Typography>
 
           <Typography variant="body2" color="text.secondary">
             {description}
@@ -41,7 +44,7 @@ export default function MediaCard({ coffee, cart, number }) {
             show more
           </Button>
         </CardContent>
-        <CardActions className="flex items-center justify-between px-4">
+        <CardActions className="flex items-center justify-between px-4 py-8">
           {!cart && (
             <Typography
               variant="body2"

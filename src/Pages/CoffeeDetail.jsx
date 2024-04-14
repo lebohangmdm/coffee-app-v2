@@ -4,7 +4,8 @@ import NumberInput from "../ui/NumberInput";
 import { Button } from "@mui/material";
 
 const CoffeeDetail = () => {
-  const { name, unitPrice, description, kj, image } = useLoaderData();
+  const { name, unitPrice, description, image, kj, fat, sugar } =
+    useLoaderData();
 
   return (
     <section className="py-16  height-vh ">
@@ -35,7 +36,10 @@ const CoffeeDetail = () => {
               </div>
               <div className="space-y-2">
                 <h3 className="text-lg font-semibold">Nutrition</h3>
-                <p className="">{kj} kj, 0g sugar, 0g fat</p>
+                <p className="">
+                  <strong>{kj}</strong>kj, <strong>{sugar}</strong>g sugar,{" "}
+                  <strong>{fat}</strong>g fat
+                </p>
               </div>
             </div>
           </div>

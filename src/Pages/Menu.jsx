@@ -3,11 +3,35 @@ import SortSelectOptions from "../ui/SortSelectOptions";
 import { getCoffees } from "../services/getCoffees";
 import { useLoaderData } from "react-router-dom";
 import MediaCard from "../ui/MediaCard";
+import { useState } from "react";
 
 const Menu = () => {
-  const coffees = useLoaderData();
-  const categories = new Set(coffees.map((coffee) => coffee.category));
+  const data = useLoaderData();
+  const categories = new Set(
+    data.map((coffee) => coffee.category.replace(/-/g, " "))
+  );
   const allCategories = ["all", ...categories];
+  const [category, setCategory] = useState("all");
+  const [selectedValue, setSelectedValue] = useState(null);
+
+  let coffees;
+  if (category) {
+    coffees =
+      category === "all"
+        ? data
+        : data.filter((coffee) => coffee.category === category);
+  }
+
+  if (selectedValue === "input") coffees = coffees;
+  if (selectedValue === "a-z")
+    coffees = coffees.slice().sort((a, b) => a.name.localeCompare(b.name));
+  if (selectedValue === "z-a")
+    coffees = coffees.slice().sort((a, b) => b.name.localeCompare(a.name));
+  if (selectedValue === "high")
+    coffees = coffees.slice().sort((a, b) => b.unitPrice - a.unitPrice);
+  if (selectedValue === "low")
+    coffees = coffees.slice().sort((a, b) => a.unitPrice - b.unitPrice);
+
   return (
     <>
       <section className="py-16 bg-menu">
@@ -38,7 +62,8 @@ const Menu = () => {
                   return (
                     <li
                       key={category}
-                      className="font-medium uppercase cursor-pointer"
+                      className="text-lg font-medium uppercase cursor-pointer"
+                      onClick={() => setCategory(category.replace(/ /g, "-"))}
                     >
                       {category}
                     </li>
@@ -49,9 +74,12 @@ const Menu = () => {
             <div className="flex flex-col space-y-4 md:spacey-6">
               <div className="flex justify-between items-center">
                 <DisplayOptions />
-                <SortSelectOptions />
+                <SortSelectOptions
+                  selectedValue={selectedValue}
+                  setSelectedValue={setSelectedValue}
+                />
               </div>
-              <div className="grid item-center gap-8 md:grid-2-cols md:gap-10 lg:gap-12 lg:grid-cols-3  ">
+              <div className="grid item-center gap-8 md:grid-2-cols md:gap-10 lg:grid-cols-3  ">
                 {coffees.map((coffee) => {
                   return (
                     <MediaCard key={coffee.id} coffee={coffee} number={50} />

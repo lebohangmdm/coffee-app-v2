@@ -1,6 +1,6 @@
 import React from "react";
 import { useLoaderData } from "react-router-dom";
-import MediaCard from "../MediaCard";
+import Card from "../Card";
 
 const Featured = () => {
   const featured = useLoaderData();
@@ -16,7 +16,7 @@ const Featured = () => {
         <div className="grid md:grid-cols-2  lg:grid-cols-3 gap-6 md:gap-8 lg:gap-12 ">
           {featured.map((coffee) => {
             return (
-              <MediaCard
+              <Card
                 key={coffee.id}
                 coffee={coffee}
                 cart={"cart"}

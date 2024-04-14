@@ -1,17 +1,8 @@
 import React from "react";
 import { FormControl, InputLabel, Select, MenuItem } from "@mui/material";
 
-const label = "Sort By";
-const value = "";
-
-const SortSelectOptions = () => {
-  const options = ["a-z", "z-a", "high", "low"];
-  // props = { label, value, options }
-  const [selectedValue, setSelectedValue] = React.useState("");
-
-  const handleChange = (event) => {
-    setSelectedValue(event.target.value);
-  };
+const SortSelectOptions = ({ selectedValue, setSelectedValue }) => {
+  const options = ["input", "a-z", "z-a", "high", "low"];
 
   return (
     <FormControl
@@ -30,15 +21,15 @@ const SortSelectOptions = () => {
         labelId="demo-simple-select-label"
         id="demo-simple-select"
         value={selectedValue}
-        onChange={handleChange}
+        onChange={(e) => setSelectedValue(e.target.value)}
       >
-        <MenuItem value="">
-          <em>None</em>
-        </MenuItem>
-        <MenuItem value={10}>{"a-z"}</MenuItem>
-        <MenuItem value={20}>{"z-a"}</MenuItem>
-        <MenuItem value={30}>{"high"}</MenuItem>
-        <MenuItem value={30}>{"low"}</MenuItem>
+        {options.map((option) => {
+          return (
+            <MenuItem key={option} value={option}>
+              {option}
+            </MenuItem>
+          );
+        })}
       </Select>
     </FormControl>
   );
