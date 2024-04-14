@@ -2,8 +2,10 @@ import DisplayOptions from "../ui/DisplayOptions";
 import SortSelectOptions from "../ui/SortSelectOptions";
 import { getCoffees } from "../services/getCoffees";
 import { useLoaderData } from "react-router-dom";
-import MediaCard from "../ui/MediaCard";
+
 import { useState } from "react";
+import GridList from "../ui/GridList";
+import ViewList from "../ui/ViewList";
 
 const Menu = () => {
   const data = useLoaderData();
@@ -12,7 +14,9 @@ const Menu = () => {
   );
   const allCategories = ["all", ...categories];
   const [category, setCategory] = useState("all");
-  const [selectedValue, setSelectedValue] = useState(null);
+  const [selectedValue, setSelectedValue] = useState("input");
+  const [displayType, setDisplayType] = useState("grid");
+  console.log(displayType);
 
   let coffees;
   if (category) {
@@ -54,7 +58,7 @@ const Menu = () => {
 
       <section className="py-16">
         <div className="align-element">
-          <div className="grid-container">
+          <div className="grid gap-4 lg:grid-cols-custom">
             <div className="">
               <p className="text-xl font-semibold mb-4">Drinks</p>
               <ul className="flex flex-col space-y-2">
@@ -71,21 +75,22 @@ const Menu = () => {
                 })}
               </ul>
             </div>
-            <div className="flex flex-col space-y-4 md:spacey-6">
+            <div className="flex flex-col space-y-4 md:space-y-6">
               <div className="flex justify-between items-center">
-                <DisplayOptions />
+                <DisplayOptions
+                  displayType={displayType}
+                  setDisplayType={setDisplayType}
+                />
                 <SortSelectOptions
                   selectedValue={selectedValue}
                   setSelectedValue={setSelectedValue}
                 />
               </div>
-              <div className="grid item-center gap-8 md:grid-2-cols md:gap-10 lg:grid-cols-3  ">
-                {coffees.map((coffee) => {
-                  return (
-                    <MediaCard key={coffee.id} coffee={coffee} number={50} />
-                  );
-                })}
-              </div>
+              {displayType === "grid" ? (
+                <GridList coffees={coffees} />
+              ) : (
+                <ViewList coffees={coffees} />
+              )}
             </div>
           </div>
         </div>
