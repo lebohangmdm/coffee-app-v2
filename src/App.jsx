@@ -5,6 +5,7 @@ import AppLayout from "./ui/AppLayout";
 import { loader as featuredLoader } from "./Pages/Home";
 import { loader as menuLoader } from "./Pages/Menu";
 import CoffeeDetail, { loader as coffeeLoader } from "./Pages/CoffeeDetail";
+import Cart from "./Pages/Cart";
 
 const router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
       {
         path: "contact",
         element: <Contact />,
+      },
+      {
+        path: "cart",
+        element: <Cart />,
       },
       {
         path: "register",

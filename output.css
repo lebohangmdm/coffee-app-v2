@@ -1200,6 +1200,10 @@ video {
     width: 60%;
   }
 
+  #root :is(.lg\:grid-cols-200px-1fr) {
+    grid-template-columns: 200px 1fr;
+  }
+
   #root :is(.lg\:grid-cols-3) {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }

@@ -22,7 +22,7 @@
   background-repeat: no-repeat;
   background-size: cover;
   width: 100%;
-  height: calc(100vh - 24px);
+  height: calc(100dvh - 24px);
 }
 
 /* background-color: :root {
@@ -36,9 +36,9 @@
 --dark-gray: #afafaf;
 --dark-gray-50: rgba(175, 175, 175, .5);
 --white-50: rgba(255, 255, 255, .5); */
-.height-vh {
+.height-dvh {
   background-color: #fff7ef;
-  height: calc(100vh - 24px);
+  height: calc(100dvh - 24px);
 }
 
 .grid-container {
@@ -92,4 +92,10 @@
   100% {
     box-shadow: 0 -48px inset;
   }
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
