@@ -19,8 +19,8 @@ export default {
       fontFamily: {
         serif: "oswald, sans-serif",
       },
-      gridColumn: {
-        custom: "200px 1fr",
+      gridTemplateColumns: {
+        "200px-1fr": "200px 1fr",
       },
     },
   },

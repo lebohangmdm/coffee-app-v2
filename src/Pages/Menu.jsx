@@ -58,7 +58,7 @@ const Menu = () => {
 
       <section className="py-16">
         <div className="align-element">
-          <div className="grid gap-4 lg:grid-cols-custom">
+          <div className="grid gap-8 lg:grid-cols-200px-1fr">
             <div className="">
               <p className="text-xl font-semibold mb-4">Drinks</p>
               <ul className="flex flex-col space-y-2">
