@@ -21,7 +21,8 @@ export default {
       },
       gridTemplateColumns: {
         "200px-1fr": "200px 1fr",
-        "1fr-250px": "1fr 250px",
+        "1fr-350px": "1fr 350px",
+        "1fr-400px": "1fr 400px",
       },
     },
   },

@@ -6,6 +6,7 @@ import { loader as featuredLoader } from "./Pages/Home";
 import { loader as menuLoader } from "./Pages/Menu";
 import CoffeeDetail, { loader as coffeeLoader } from "./Pages/CoffeeDetail";
 import Cart from "./Pages/Cart";
+import Checkout from "./Pages/Checkout";
 
 const router = createBrowserRouter([
   {
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
       {
         path: "cart",
         element: <Cart />,
+      },
+      {
+        path: "checkout",
+        element: <Checkout />,
       },
       {
         path: "register",

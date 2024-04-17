@@ -11,7 +11,7 @@ const Cart = () => {
         <h3 className="text-2xl font-serif text-brownish-1 font-semibold md:text-3xl lg:text-4xl mb-8  ">
           Shopping Cart
         </h3>
-        <div className="grid items-start lg:grid-cols-1fr-250px gap-12 ">
+        <div className="grid items-start lg:grid-cols-1fr-350px gap-12 ">
           <div>
             <div>
               <div className="flex flex-col space-y-4 md:flex-row md:space-y-0 md:justify-between">
@@ -21,7 +21,7 @@ const Cart = () => {
                     <img
                       src="/latte.jpg"
                       alt="latte"
-                      className="w-[200px] h-[200px]"
+                      className="w-[150px] h-[150px]"
                     />
                     <p className="text-lg font-serif md:text-2xl lg:text-3xl">
                       Latte Expresso
@@ -43,7 +43,7 @@ const Cart = () => {
                   </div>
                 </div>
               </div>
-              <div className="mt-4 flex justify-end">
+              <div className="flex justify-end">
                 <IconButton aria-label="edit" className="text-amber-900">
                   <EditIcon />
                 </IconButton>
@@ -53,20 +53,24 @@ const Cart = () => {
               </div>
             </div>
           </div>
-          <div className=" bg-light-brown-1 py-6 px-6 text-brownish-2 ">
-            <div className="flex flex-col space-y-3 divide-y divide-brownish-2">
+          <div className=" bg-gray-300 py-6 px-6 text-brownish-2 ">
+            <p className="text-xl mb-4">Summary</p>
+
+            <div className="flex flex-col space-y-1 divide-y divide-brownish-2">
               <div className="flex justify-between py-1">
-                <p className="font-semibold">Subtotal</p>
+                <p className="text-sm font-semibold">Subtotal</p>
                 <p className="font-bold">R1400</p>
               </div>
-              <div className="flex justify-between py-1">
-                <p className="font-semibold">Tax</p>
-                <p className="font-bold">R180</p>
-              </div>
+
               <div className="flex justify-between py-1">
                 <p className="font-semibold">Order Total</p>
                 <p className="font-bold text-lg">R1680</p>
               </div>
+            </div>
+            <div className="mt-6">
+              <button className="w-full text-base font-medium rounded-sm capitalize py-2 px-4  bg-brownish-1 text-white hover:border-brownish-2 transition-all duration-160">
+                proceed to order
+              </button>
             </div>
           </div>
         </div>
