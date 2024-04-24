@@ -1,11 +1,30 @@
 import { useLoaderData } from "react-router-dom";
 import { getCoffee } from "../services/getCoffees";
 import NumberInput from "../ui/NumberInput";
+
+import { useDispatch, useSelector } from "react-redux";
+import { addItem, menu, selectItemQuantity } from "../features/cart/cartSlice";
+import { useState } from "react";
 import { Button } from "@mui/material";
 
 const CoffeeDetail = () => {
-  const { name, unitPrice, description, image, kj, fat, sugar } =
+  const dispatch = useDispatch();
+  const [amount, setAmount] = useState(1);
+
+  const { id, name, unitPrice, description, image, kj, fat, sugar } =
     useLoaderData();
+
+  const handleAddItem = () => {
+    const newCoffee = {
+      id,
+      name,
+      image,
+      quantity: parseInt(amount),
+      unitPrice,
+    };
+
+    dispatch(addItem(newCoffee));
+  };
 
   return (
     <section className="py-16  height-vh ">
@@ -27,7 +46,11 @@ const CoffeeDetail = () => {
             </p>
 
             <div>
-              <NumberInput />
+              <NumberInput
+                amount={amount}
+                setAmount={setAmount}
+                onAddItem={handleAddItem}
+              />
             </div>
             <div className="mt-8 flex flex-col space-y-4 md:space-y-0 md:flex-row md:justify-between md:items-center">
               <div className="space-y-2">
@@ -52,7 +75,7 @@ const CoffeeDetail = () => {
 export const loader = async ({ params }) => {
   const { id } = params;
   const coffee = await getCoffee(id);
-  console.log(id);
+
   return coffee;
 };
 

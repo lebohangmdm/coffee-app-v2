@@ -9,6 +9,7 @@ import ViewList from "../ui/ViewList";
 
 const Menu = () => {
   const data = useLoaderData();
+
   const categories = new Set(
     data.map((coffee) => coffee.category.replace(/-/g, " "))
   );
@@ -16,7 +17,6 @@ const Menu = () => {
   const [category, setCategory] = useState("all");
   const [selectedValue, setSelectedValue] = useState("input");
   const [displayType, setDisplayType] = useState("grid");
-  console.log(displayType);
 
   let coffees;
   if (category) {
@@ -103,5 +103,6 @@ export default Menu;
 
 export const loader = async () => {
   const data = await getCoffees();
+
   return data;
 };
