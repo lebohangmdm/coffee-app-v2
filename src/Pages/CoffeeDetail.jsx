@@ -2,10 +2,9 @@ import { useLoaderData } from "react-router-dom";
 import { getCoffee } from "../services/getCoffees";
 import NumberInput from "../ui/NumberInput";
 
-import { useDispatch, useSelector } from "react-redux";
-import { addItem, menu, selectItemQuantity } from "../features/cart/cartSlice";
+import { useDispatch } from "react-redux";
+import { addItem } from "../features/cart/cartSlice";
 import { useState } from "react";
-import { Button } from "@mui/material";
 
 const CoffeeDetail = () => {
   const dispatch = useDispatch();
