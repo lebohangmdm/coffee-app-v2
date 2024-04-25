@@ -1,6 +1,7 @@
 import { Button } from "@mui/material";
+import CartButton from "./CartButton";
 
-const NumberInput = ({ amount, setAmount, onAddItem }) => {
+const NumberInput = ({ amount, setAmount }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -18,20 +19,22 @@ const NumberInput = ({ amount, setAmount, onAddItem }) => {
         </label>
         <input
           type="number"
-          className="w-14 text-xl text-brownish-2 p-2 bg-transparent"
+          className="w-14 text-xl text-brownish-2 p-2 bg-transparent text-center"
           value={amount}
           min={1}
           onChange={(e) => setAmount(e.target.value)}
         />
       </div>
-      <Button
+
+      <CartButton />
+      {/* <Button
         type="submit"
         variant="contained"
         className="text-base rounded-md font-medium  capitalize py-1 px-4  bg-brownish-1 text-white hover:border-brownish-2 transition-all duration-160"
         onClick={handleSubmit}
       >
         Add to Cart
-      </Button>
+      </Button> */}
     </form>
   );
 };

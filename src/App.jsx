@@ -1,5 +1,13 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import { About, Contact, Home, Login, Menu, Register } from "./Pages";
+import {
+  About,
+  Contact,
+  Home,
+  Login,
+  Menu,
+  Register,
+  ConfigureCoffee,
+} from "./Pages";
 
 import AppLayout from "./ui/AppLayout";
 import { loader as featuredLoader } from "./Pages/Home";
@@ -7,6 +15,7 @@ import { loader as menuLoader } from "./Pages/Menu";
 import CoffeeDetail, { loader as coffeeLoader } from "./Pages/CoffeeDetail";
 import Cart from "./Pages/Cart";
 import Checkout from "./Pages/Checkout";
+import { loader as configureLoader } from "./Pages/ConfigureCoffee";
 
 const router = createBrowserRouter([
   {
@@ -42,6 +51,11 @@ const router = createBrowserRouter([
       {
         path: "checkout",
         element: <Checkout />,
+      },
+      {
+        path: "cart/:id",
+        element: <ConfigureCoffee />,
+        loader: configureLoader,
       },
       {
         path: "register",
