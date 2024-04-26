@@ -8,9 +8,9 @@ const CartButton = () => {
       variant="contained"
       color="primary"
       startIcon={<ShoppingCartIcon />}
-      className="text-base rounded-md font-medium  capitalize py-1 px-4  bg-brownish-1 text-white hover:border-brownish-2 transition-all duration-160"
+      className="text-base rounded-md font-medium  uppercase py-1 px-4  bg-brownish-1 text-white hover:border-brownish-2 transition-all duration-160"
     >
-      Cart
+      Update your cart
     </Button>
   );
 };

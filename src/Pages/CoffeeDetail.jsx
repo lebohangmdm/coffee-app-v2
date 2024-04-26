@@ -40,7 +40,7 @@ const CoffeeDetail = () => {
               {description}
             </p>
             <p className="text-lg text-brownish-2 md:text-2xl mb-6 md:mb-10 lg:text-3xl">
-              <span className="font-semibold">R </span>
+              <span className="font-semibold">R</span>
               {unitPrice}
             </p>
 
@@ -48,7 +48,7 @@ const CoffeeDetail = () => {
               <NumberInput
                 amount={amount}
                 setAmount={setAmount}
-                onAddItem={handleAddItem}
+                onHandle={handleAddItem}
               />
             </div>
             <div className="mt-8 flex flex-col space-y-4 md:space-y-0 md:flex-row md:justify-between md:items-center">

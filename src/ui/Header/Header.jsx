@@ -3,7 +3,7 @@ import SearchBar from "./SearchBar";
 import MobileNav from "./MobileNav";
 import NavLinks from "./NavLinks";
 import AuthMenu from "./AuthMenu";
-import CartButton from "./CartButton";
+import CartIcon from "./CartIcon";
 
 const Header = () => {
   return (
@@ -16,17 +16,8 @@ const Header = () => {
           </div>
           <div className=" hidden md:flex items-center gap-3 ">
             <SearchBar />
-            {/* <Button
-              variant="outlined"
-              className="rounded-full  px-4 border-brownish-1 border-1 border-opacity-70  text-brownish-1 bg-transparent hover:border-opacity-100 hover:text-brownish-2;"
-            >
-              Sign in
-            </Button>
-            <Button variant="contained" className="rounded-full bg-black px-4">
-              Join us
-            </Button> */}
             <AuthMenu />
-            <CartButton />
+            <CartIcon />
           </div>
 
           <MobileNav />

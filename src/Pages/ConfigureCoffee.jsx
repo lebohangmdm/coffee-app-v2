@@ -4,6 +4,7 @@ import NumberInput from "../ui/NumberInput";
 
 import { useDispatch } from "react-redux";
 import { useState } from "react";
+import { updateQuantity } from "../features/cart/cartSlice";
 
 const ConfigureCoffee = () => {
   const dispatch = useDispatch();
@@ -11,6 +12,12 @@ const ConfigureCoffee = () => {
 
   const { id, name, unitPrice, description, image, kj, fat, sugar } =
     useLoaderData();
+
+  const handleUpdateQuantity = () => {
+    const quantity = parseInt(amount);
+
+    dispatch(updateQuantity({ id, quantity }));
+  };
 
   return (
     <section className="py-16  height-vh ">
@@ -27,12 +34,17 @@ const ConfigureCoffee = () => {
               {description}
             </p>
             <p className="text-lg text-brownish-2 md:text-2xl mb-6 md:mb-10 lg:text-3xl">
-              <span className="font-semibold">R </span>
+              <span className="font-semibold">R</span>
               {unitPrice}
             </p>
 
             <div>
-              <NumberInput amount={amount} setAmount={setAmount} />
+              <NumberInput
+                amount={amount}
+                setAmount={setAmount}
+                onHandle={handleUpdateQuantity}
+                buttonType={"update"}
+              />
             </div>
             <div className="mt-8 flex flex-col space-y-4 md:space-y-0 md:flex-row md:justify-between md:items-center">
               <div className="space-y-2">

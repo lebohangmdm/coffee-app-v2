@@ -63,7 +63,7 @@ const Cart = () => {
 
                   <div className="flex justify-end">
                     <>
-                      <Link to={`/menu/${coffee.id}`}>
+                      <Link to={`/cart/${coffee.id}`}>
                         <IconButton
                           aria-label="edit"
                           className="text-amber-900"
