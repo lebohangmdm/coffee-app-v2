@@ -16,6 +16,7 @@ import CoffeeDetail, { loader as coffeeLoader } from "./Pages/CoffeeDetail";
 import Cart from "./Pages/Cart";
 import Checkout from "./Pages/Checkout";
 import { loader as configureLoader } from "./Pages/ConfigureCoffee";
+import { action as checkoutAction } from "./ui/Forms";
 
 const router = createBrowserRouter([
   {
@@ -49,8 +50,9 @@ const router = createBrowserRouter([
         element: <Cart />,
       },
       {
-        path: "checkout",
+        path: "/checkout",
         element: <Checkout />,
+        action: checkoutAction,
       },
       {
         path: "cart/:id",

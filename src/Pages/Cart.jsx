@@ -6,6 +6,7 @@ import CartQuantityInput from "../ui/CartQuantityInput";
 import { useDispatch, useSelector } from "react-redux";
 import { getCart, getTotalPrice, removeItem } from "../features/cart/cartSlice";
 import { Link } from "react-router-dom";
+import EmptyCart from "../ui/EmptyCart";
 
 const Cart = () => {
   const cart = useSelector(getCart);
@@ -13,8 +14,10 @@ const Cart = () => {
 
   const dispatch = useDispatch();
 
+  if (!cart.length) return <EmptyCart />;
+
   return (
-    <section className="py-16">
+    <section className="py-16 bg-light-brown-5">
       <div className="align-element">
         <h3 className="text-2xl font-serif text-brownish-1 font-semibold md:text-3xl lg:text-4xl mb-8  ">
           Shopping Cart
@@ -84,18 +87,20 @@ const Cart = () => {
               );
             })}
           </div>
-          <div className=" bg-gray-300 py-6 px-6 text-brownish-2 ">
+          <div className=" bg-gray-300 py-6 px-6  ">
             <p className="text-xl mb-4">Summary</p>
 
             <div className="flex flex-col space-y-1 divide-y divide-brownish-2">
               <div className="flex justify-between py-1">
                 <p className="text-sm font-semibold">Subtotal</p>
-                <p className="font-bold">R1400</p>
+                <p className="font-bold">R{totalPrice}</p>
               </div>
 
               <div className="flex justify-between py-1">
                 <p className="font-semibold">Order Total</p>
-                <p className="font-bold text-lg">R1680</p>
+                <p className="font-bold text-lg text-brownish-2">
+                  R{totalPrice}
+                </p>
               </div>
             </div>
             <div className="mt-6">

@@ -13,6 +13,7 @@ export default {
         "light-brown-2": "#f6debc",
         "light-brown-3": "#ffe0b7",
         "light-brown-4": "#f9cf93",
+        "light-brown-5": " #fff7ef",
         blackish: "#333",
         whitesmoke: "#F5F5F5",
       },

@@ -38,7 +38,7 @@
 --white-50: rgba(255, 255, 255, .5); */
 .height-dvh {
   background-color: #fff7ef;
-  height: calc(100dvh - 24px);
+  height: calc(100vh - 24px);
 }
 
 .grid-container {

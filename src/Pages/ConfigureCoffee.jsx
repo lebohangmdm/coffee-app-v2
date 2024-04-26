@@ -20,7 +20,7 @@ const ConfigureCoffee = () => {
   };
 
   return (
-    <section className="py-16  height-vh ">
+    <section className="py-16  height-dvh ">
       <div className="align-element">
         <div className="grid  md:grid-cols-2 gap-8 md:gap-12 lg:gap-16">
           <div>
