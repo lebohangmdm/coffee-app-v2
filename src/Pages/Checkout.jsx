@@ -1,17 +1,22 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import RadioInput from "../ui/RadioInput";
 import Forms from "../ui/Forms";
 import { useSelector } from "react-redux";
 import { getCart, getTotalPrice } from "../features/cart/cartSlice";
 import EmptyCart from "../ui/EmptyCart";
+import { useNavigation } from "react-router-dom";
+import { getOrder } from "../services/apiOrders";
 
 const Checkout = () => {
+  const navigation = useNavigation();
   const [value, setValue] = useState("");
   const totalPrice = useSelector(getTotalPrice);
   const cart = useSelector(getCart);
   console.log(totalPrice);
   const deliverySum = value === "delivery" ? 35 : 0;
   const orderPrice = totalPrice + deliverySum;
+
+  console.log(navigation);
 
   // if (totalPrice === 0) return <EmptyCart />;
 
@@ -28,7 +33,7 @@ const Checkout = () => {
         </h3>
         <div className="grid  items-start lg:grid-cols-1fr-400px gap-12 lg:gap-16">
           <div>
-            <Forms order={order} />
+            <Forms order={order} value={value} />
           </div>
           <div className="py-6 px-8 bg-gray-300 text-brownish-2 ">
             <p className="text-xl font-semibold mb-4">Order Summary</p>

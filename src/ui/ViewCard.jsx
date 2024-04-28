@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { addItem } from "../features/cart/cartSlice";
+import Btn from "./Btn";
 
 const ViewCard = ({ coffee }) => {
   const dispatch = useDispatch();
@@ -28,17 +29,16 @@ const ViewCard = ({ coffee }) => {
       </div>
       <div className="w-[60%] ">
         <div className="space-y-3 mb-12">
-          <h3 className="text-xl font-medium font-serif">{coffee.name}</h3>
-          <p className="text-xl md:text-3xl font-bold ">R {coffee.unitPrice}</p>
+          <h3 className="text-xl font-medium font-serif text-brownish-2">
+            {coffee.name}
+          </h3>
+          <p className="text-xl md:text-3xl font-bold ">R{coffee.unitPrice}</p>
 
           <p className="text-sm">{coffee.description}</p>
         </div>
-        <button
-          className={`text-lg font-semibold rounded-sm uppercase py-2 px-4  bg-brownish-1 hover:brightness-200 text-white hove transition-all duration-160`}
-          onClick={handleAddItem}
-        >
+        <Btn type={"medium"} onClick={handleAddItem}>
           Add to Cart
-        </button>
+        </Btn>
       </div>
       <div></div>
     </div>

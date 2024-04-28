@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getCart, getTotalPrice, removeItem } from "../features/cart/cartSlice";
 import { Link } from "react-router-dom";
 import EmptyCart from "../ui/EmptyCart";
+import Btn from "../ui/Btn";
 
 const Cart = () => {
   const cart = useSelector(getCart);
@@ -104,9 +105,9 @@ const Cart = () => {
               </div>
             </div>
             <div className="mt-6">
-              <button className="w-full text-base font-medium rounded-sm capitalize py-2 px-4  bg-brownish-1 text-white hover:border-brownish-2 transition-all duration-160">
+              <Btn to={"/checkout"} type={"full"}>
                 proceed to order
-              </button>
+              </Btn>
             </div>
           </div>
         </div>

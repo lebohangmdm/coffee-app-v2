@@ -6,15 +6,15 @@ const Login = () => {
   };
 
   return (
-    <section className="pt-16">
+    <section className="pt-16 height-dvh">
       <div className="align-element">
         <div className="grid items-center justify-center ">
-          <h3 className="text-lg font-semibold text-center text-brownish-2 mb-6 md:mb-8">
+          <h3 className="text-lg font-semibold text-center text-brownish-2 mb-6 md:mb-8 lg:mb-10">
             Register
           </h3>
 
           <form onSubmit={() => {}} className=" max-w-[320px]">
-            <Grid container spacing={2}>
+            <Grid container spacing={4}>
               <Grid item xs={12}>
                 <TextField
                   fullWidth

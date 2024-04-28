@@ -8,6 +8,7 @@ import Typography from "@mui/material/Typography";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addItem } from "../features/cart/cartSlice";
+import Btn from "./Btn";
 
 export default function MediaCard({ coffee, cart, number }) {
   const [showMore, setShowMore] = useState(false);
@@ -30,7 +31,7 @@ export default function MediaCard({ coffee, cart, number }) {
 
   return (
     <Card sx={{ maxWidth: 350, marginInline: "auto" }}>
-      <Link Link to={`/menu/${coffee.id}`}>
+      <Link Link to={`/${coffee.id}`}>
         <CardMedia
           sx={{ height: 250, objectFit: "cover" }}
           image={coffee.image}
@@ -63,26 +64,9 @@ export default function MediaCard({ coffee, cart, number }) {
       </CardContent>
 
       <CardActions className="flex items-center justify-between px-4 py-8">
-        {!cart && (
-          <Typography
-            variant="body2"
-            color="text.secondary"
-            className="font-semibold text-lg text-brownish-2"
-          >
-            R {coffee.unitPrice}
-          </Typography>
-        )}
-
-        {cart && (
-          <button
-            className={`${
-              cart ? "w-full" : " "
-            } text-base font-medium rounded-sm uppercase py-2 px-4  bg-brownish-1 text-white hover:brightness-200 transition-all duration-160`}
-            onClick={handleAddItem}
-          >
-            Add to Cart
-          </button>
-        )}
+        <Btn type={"full"} onClick={handleAddItem}>
+          Add to cart
+        </Btn>
       </CardActions>
     </Card>
   );

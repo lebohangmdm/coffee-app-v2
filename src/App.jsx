@@ -33,7 +33,7 @@ const router = createBrowserRouter([
         loader: menuLoader,
       },
       {
-        path: "/menu/:id",
+        path: "/:id",
         element: <CoffeeDetail />,
         loader: coffeeLoader,
       },

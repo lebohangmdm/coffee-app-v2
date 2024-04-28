@@ -6,6 +6,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Link } from "react-router-dom";
+import Btn from "./Btn";
 
 export default function MediaCard({ coffee, cart, number }) {
   const [showMore, setShowMore] = useState(false);
@@ -15,54 +16,44 @@ export default function MediaCard({ coffee, cart, number }) {
     : coffee.description.slice(0, number);
 
   return (
-    <Link to={`/menu/${coffee.id}`}>
-      <Card
-        sx={{ maxWidth: 300, marginInline: "auto" }}
-        className="transform hover:scale-105 transition-all duration-200 mt-4"
-      >
-        <CardMedia
-          sx={{ height: 200 }}
-          image={coffee.image}
-          title={coffee.name}
-          className="object-cover"
-        />
-        <CardContent>
-          <p className="text-lg font-medium font-serif">{coffee.name}</p>
+    <>
+      <Link to={`/${coffee.id}`}>
+        <Card
+          sx={{ maxWidth: 300, marginInline: "auto" }}
+          className="transform hover:scale-105 transition-all duration-200 mt-4"
+        >
+          <CardMedia
+            sx={{ height: 200 }}
+            image={coffee.image}
+            title={coffee.name}
+            className="object-cover"
+          />
+          <CardContent>
+            <p className="text-lg font-medium font-serif mb-2">{coffee.name}</p>
 
-          <Typography variant="body2" color="text.secondary">
-            {description}
-          </Typography>
-          <Button
-            variant="text"
-            color="primary"
-            className="text-sm text-brownish-2 mt-2"
-            onClick={() => setShowMore((show) => !show)}
-          >
-            show more
-          </Button>
-        </CardContent>
-        <CardActions className="flex items-center justify-between px-4">
-          {!cart && (
+            <Typography variant="body2" color="text.secondary">
+              {description}
+            </Typography>
+            <Button
+              variant="text"
+              color="primary"
+              className="text-sm text-brownish-2 mt-2"
+              onClick={() => setShowMore((show) => !show)}
+            >
+              show more
+            </Button>
+          </CardContent>
+          <CardActions className=" px-4">
             <Typography
               variant="body2"
               color="text.secondary"
               className="font-semibold text-lg text-brownish-2"
             >
-              R {coffee.unitPrice}
+              R{coffee.unitPrice}
             </Typography>
-          )}
-
-          {cart && (
-            <button
-              className={`${
-                cart ? "w-full" : " "
-              } text-base font-medium rounded-sm capitalize py-1 px-4  bg-brownish-1 text-white hover:border-brownish-2 transition-all duration-160`}
-            >
-              Add to Cart
-            </button>
-          )}
-        </CardActions>
-      </Card>
-    </Link>
+          </CardActions>
+        </Card>
+      </Link>
+    </>
   );
 }
