@@ -5,7 +5,6 @@ import { useSelector } from "react-redux";
 import { getCart, getTotalPrice } from "../features/cart/cartSlice";
 import EmptyCart from "../ui/EmptyCart";
 import { useNavigation } from "react-router-dom";
-import { getOrder } from "../services/apiOrders";
 
 const Checkout = () => {
   const navigation = useNavigation();

@@ -71,8 +71,6 @@ export const action = async ({ request }) => {
 
   if (Object.keys(errors).length > 0) return errors;
 
-  // console.log(newOrder);
-
   return null;
 };
 

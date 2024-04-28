@@ -17,6 +17,8 @@ import Cart from "./Pages/Cart";
 import Checkout from "./Pages/Checkout";
 import { loader as configureLoader } from "./Pages/ConfigureCoffee";
 import { action as checkoutAction } from "./ui/Forms";
+import { action as loginAction } from "./Pages/Login";
+import { action as registerAction } from "./Pages/Register";
 
 const router = createBrowserRouter([
   {
@@ -62,10 +64,12 @@ const router = createBrowserRouter([
       {
         path: "register",
         element: <Register />,
+        action: registerAction,
       },
       {
         path: "login",
         element: <Login />,
+        action: loginAction,
       },
     ],
   },
