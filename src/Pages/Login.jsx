@@ -1,14 +1,21 @@
 import { Button, Grid, TextField } from "@mui/material";
 import { login } from "../services/apiAuth";
-import { Form, Link, useActionData } from "react-router-dom";
+import {
+  Form,
+  Link,
+  redirect,
+  useActionData,
+  useNavigation,
+} from "react-router-dom";
 
 const Login = () => {
+  const formErrors = useActionData();
   const labelStyle = {
     color: "#3c1b08",
   };
 
-  const formErrors = useActionData();
-  console.log(formErrors);
+  const navigation = useNavigation();
+  const submitting = navigation.state === "submitting";
 
   return (
     <section className="pt-16 height-dvh">
@@ -73,9 +80,10 @@ const Login = () => {
                   variant="contained"
                   color="primary"
                   fullWidth
+                  disabled={submitting}
                   className="  text-white bg-amber-900 hover:bg-brownish-1 transition-all duration-160"
                 >
-                  Login
+                  {submitting ? "Logging" : "Login"}
                 </Button>
               </Grid>
               <Grid item xs={12}>
@@ -122,7 +130,7 @@ export const action = async ({ request }) => {
   const user = await login({ email, password });
   console.log(user);
 
-  return null;
+  return redirect("/menu");
 };
 
 export default Login;

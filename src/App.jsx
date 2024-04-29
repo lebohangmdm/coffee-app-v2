@@ -9,7 +9,7 @@ import {
   ConfigureCoffee,
 } from "./Pages";
 
-import AppLayout from "./ui/AppLayout";
+import AppLayout, { loader as appLoader } from "./ui/AppLayout";
 import { loader as featuredLoader } from "./Pages/Home";
 import { loader as menuLoader } from "./Pages/Menu";
 import CoffeeDetail, { loader as coffeeLoader } from "./Pages/CoffeeDetail";
@@ -23,6 +23,7 @@ import { action as registerAction } from "./Pages/Register";
 const router = createBrowserRouter([
   {
     element: <AppLayout />,
+    loader: appLoader,
     children: [
       {
         path: "/",

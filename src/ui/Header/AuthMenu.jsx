@@ -3,9 +3,11 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { useState } from "react";
-import { ListSubheader } from "@mui/material";
+import { Avatar, ListSubheader } from "@mui/material";
+import { NavLink, redirect, useNavigate } from "react-router-dom";
+import { logout } from "../../services/apiAuth";
 
-export default function AuthMenu() {
+export default function AuthMenu({ user, auth }) {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -13,6 +15,14 @@ export default function AuthMenu() {
   };
   const handleClose = () => {
     setAnchorEl(null);
+  };
+  const navigate = useNavigate();
+
+  const avatarLetter = user?.username.substring(0, 1).toUpperCase();
+
+  const handleLogout = async () => {
+    await logout();
+    return navigate("/");
   };
 
   return (
@@ -25,7 +35,11 @@ export default function AuthMenu() {
         onClick={handleClick}
         sx={{ color: "#180b03" }}
       >
-        <AccountCircleIcon />
+        {auth ? (
+          <Avatar sx={{ backgroundColor: "#463c35" }}>{avatarLetter}</Avatar>
+        ) : (
+          <AccountCircleIcon />
+        )}
       </Button>
 
       <Menu
@@ -50,30 +64,70 @@ export default function AuthMenu() {
         >
           My Account
         </ListSubheader>
-        <MenuItem
-          onClick={handleClose}
-          sx={{
-            color: "#180b03",
-            textTransform: "capitalize",
-            fontSize: "16px",
-            width: "150px",
-            paddingInline: "24px",
-          }}
-        >
-          Sign In
-        </MenuItem>
-        <MenuItem
-          onClick={handleClose}
-          sx={{
-            color: "#180b03",
-            textTransform: "capitalize",
-            fontSize: "16px",
-            width: "150px",
-            paddingInline: "24px",
-          }}
-        >
-          Register
-        </MenuItem>
+
+        {auth ? (
+          <div>
+            <NavLink to={"/profile"}>
+              <MenuItem
+                onClick={handleClose}
+                sx={{
+                  color: "#180b03",
+                  textTransform: "capitalize",
+                  fontSize: "16px",
+                  width: "150px",
+                  paddingInline: "24px",
+                }}
+              >
+                my profile
+              </MenuItem>
+            </NavLink>
+            <NavLink to={"/logout"} onClick={handleLogout}>
+              <MenuItem
+                onClick={handleClose}
+                sx={{
+                  color: "#180b03",
+                  textTransform: "capitalize",
+                  fontSize: "16px",
+                  width: "150px",
+                  paddingInline: "24px",
+                }}
+              >
+                logout
+              </MenuItem>
+            </NavLink>
+          </div>
+        ) : (
+          <div>
+            <NavLink to={"/login"}>
+              <MenuItem
+                onClick={handleClose}
+                sx={{
+                  color: "#180b03",
+                  textTransform: "capitalize",
+                  fontSize: "16px",
+                  width: "150px",
+                  paddingInline: "24px",
+                }}
+              >
+                Sign In
+              </MenuItem>
+            </NavLink>
+            <NavLink to={"/register"}>
+              <MenuItem
+                onClick={handleClose}
+                sx={{
+                  color: "#180b03",
+                  textTransform: "capitalize",
+                  fontSize: "16px",
+                  width: "150px",
+                  paddingInline: "24px",
+                }}
+              >
+                Register
+              </MenuItem>
+            </NavLink>
+          </div>
+        )}
       </Menu>
     </div>
   );

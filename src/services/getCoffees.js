@@ -3,12 +3,11 @@ import supabase from "./supabase";
 export async function getCoffees() {
   const { data, error } = await supabase.from("coffees").select("*");
 
-  console.log(data);
   if (error) {
     console.error(error);
     throw new Error("Coffees could not be loaded");
   }
-  console.log(data, error);
+
   return data;
 }
 

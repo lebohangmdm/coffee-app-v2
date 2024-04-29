@@ -16,7 +16,7 @@ const Home = () => {
 
 export const loader = async () => {
   const data = await getCoffees();
-  console.log(data);
+
   const featured = data.filter((coffee) => coffee.featured === true);
   return featured;
 };

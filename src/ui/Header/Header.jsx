@@ -5,7 +5,7 @@ import NavLinks from "./NavLinks";
 import AuthMenu from "./AuthMenu";
 import CartIcon from "./CartIcon";
 
-const Header = () => {
+const Header = ({ user, auth }) => {
   return (
     <header className="p-6 relative bg-whitesmoke">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
@@ -16,7 +16,7 @@ const Header = () => {
           </div>
           <div className=" hidden md:flex items-center gap-3 ">
             <SearchBar />
-            <AuthMenu />
+            <AuthMenu user={user} auth={auth} />
             <CartIcon />
           </div>
 

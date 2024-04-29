@@ -1,12 +1,13 @@
 import { Button, Grid, TextField } from "@mui/material";
 import { isValidEmail } from "../utils/helpers";
-import { Link, useActionData } from "react-router-dom";
+import { Link, redirect, useActionData, useNavigation } from "react-router-dom";
 import { register } from "../services/apiAuth";
 import { Form } from "react-router-dom";
 
 const Register = () => {
   const formErrors = useActionData();
-  console.log(formErrors);
+  const navigation = useNavigation();
+  const submitting = navigation.state === "submitting";
 
   const labelStyle = {
     color: "#3c1b08",
@@ -119,9 +120,10 @@ const Register = () => {
                   variant="contained"
                   color="primary"
                   fullWidth
+                  disabled={submitting}
                   className="  text-white bg-amber-900 hover:bg-brownish-1 transition-all duration-160"
                 >
-                  Register
+                  {submitting ? "Registering" : "Register"}
                 </Button>
               </Grid>
               <Grid item xs={12}>
@@ -172,9 +174,9 @@ export const action = async ({ request }) => {
     return errors;
   }
 
-  const user = await register({ email, password, password });
-  console.log(user);
-  return null;
+  const data1 = await register({ username, email, password });
+  console.log(data1);
+  return redirect("/login");
 };
 
 export default Register;

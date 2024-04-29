@@ -5,13 +5,17 @@ export const register = async ({ username, email, password }) => {
     email,
     password,
     options: {
-      username,
+      data: {
+        username,
+      },
     },
   });
 
   if (error) {
     throw new Error(error.message);
   }
+
+  return data;
 };
 
 export const login = async ({ email, password }) => {
@@ -24,7 +28,20 @@ export const login = async ({ email, password }) => {
     throw new Error(error.message);
   }
 
-  console.log(data);
-
   return data;
 };
+
+export async function getCurrentUser() {
+  const { data: session } = await supabase.auth.getSession();
+  if (!session.session) return null;
+
+  const { data, error } = await supabase.auth.getUser();
+
+  if (error) throw new Error(error.message);
+  return data?.user;
+}
+
+export async function logout() {
+  const { error } = await supabase.auth.signOut();
+  if (error) throw new Error(error.message);
+}
