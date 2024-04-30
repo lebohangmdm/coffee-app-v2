@@ -26,8 +26,8 @@ const Register = () => {
               <Grid item xs={12}>
                 <TextField
                   fullWidth
-                  label="Username"
-                  name="username"
+                  label="First Name"
+                  name="firstName"
                   variant="outlined"
                   required
                   InputLabelProps={{ style: labelStyle }}
@@ -39,9 +39,9 @@ const Register = () => {
                     },
                   }}
                 />
-                {formErrors?.username && (
+                {formErrors?.firstName && (
                   <p className="text-sm mt-2 text-red-500">
-                    {formErrors.username}
+                    {formErrors.firstName}
                   </p>
                 )}
               </Grid>
@@ -146,14 +146,14 @@ export const action = async ({ request }) => {
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
 
-  const { username, email, password, confirmPassword } = data;
+  const { firstName, email, password, confirmPassword } = data;
 
   const errors = {};
 
   console.log(email);
   // validate the fields
 
-  if (!username.length || username === "") {
+  if (!firstName.length || firstName === "") {
     errors.password = "Password must be more than 5 characters";
   }
 
@@ -174,7 +174,7 @@ export const action = async ({ request }) => {
     return errors;
   }
 
-  const data1 = await register({ username, email, password });
+  const data1 = await register({ firstName, email, password });
   console.log(data1);
   return redirect("/login");
 };

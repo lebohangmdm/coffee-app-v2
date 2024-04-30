@@ -1,21 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import RadioInput from "../ui/RadioInput";
 import Forms from "../ui/Forms";
 import { useSelector } from "react-redux";
 import { getCart, getTotalPrice } from "../features/cart/cartSlice";
 import EmptyCart from "../ui/EmptyCart";
-import { useNavigation } from "react-router-dom";
+import { useLoaderData, useNavigation } from "react-router-dom";
+import { getAddress, getPosition } from "../utils/helpers";
 
 const Checkout = () => {
   const navigation = useNavigation();
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState("collect");
   const totalPrice = useSelector(getTotalPrice);
   const cart = useSelector(getCart);
-  console.log(totalPrice);
+  // console.log(totalPrice);
   const deliverySum = value === "delivery" ? 35 : 0;
   const orderPrice = totalPrice + deliverySum;
+  const address = useLoaderData();
 
-  console.log(navigation);
+  // console.log(navigation);
 
   // if (totalPrice === 0) return <EmptyCart />;
 
@@ -32,7 +34,7 @@ const Checkout = () => {
         </h3>
         <div className="grid  items-start lg:grid-cols-1fr-400px gap-12 lg:gap-16">
           <div>
-            <Forms order={order} value={value} />
+            <Forms order={order} address={address} value={value} />
           </div>
           <div className="py-6 px-8 bg-gray-300 text-brownish-2 ">
             <p className="text-xl font-semibold mb-4">Order Summary</p>
@@ -59,6 +61,19 @@ const Checkout = () => {
       </div>
     </section>
   );
+};
+
+export const loader = async () => {
+  // 1) We get the user's geolocation position
+  const positionObj = await getPosition();
+  const position = {
+    latitude: positionObj.coords.latitude,
+    longitude: positionObj.coords.longitude,
+  };
+  // 2) Then we use a reverse geocoding API
+  const address = await getAddress(position);
+  console.log(address);
+  return address;
 };
 
 export default Checkout;

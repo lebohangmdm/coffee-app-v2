@@ -1,10 +1,16 @@
-import { Form, useActionData } from "react-router-dom";
+import { Form, redirect, useActionData } from "react-router-dom";
 import { isValidPhone } from "../utils/helpers";
+import { createOrder } from "../services/apiOrder";
 
-const Forms = ({ order, value }) => {
+const Forms = ({ order, value, address }) => {
   const disable = value === "collect";
   const formErrors = useActionData();
+  const showAddress = value === "delivery" ? address : "";
   console.log(formErrors);
+  console.log(order);
+
+  console.log(address);
+
   return (
     <Form method="POST" action="/checkout">
       <div className="space-y-4">
@@ -15,7 +21,7 @@ const Forms = ({ order, value }) => {
           <input
             type="text"
             name="name"
-            className="py-2 px-4 bg-transparent w-full rounded-sm border border-brownish-1 focus:border-brownish-2 "
+            className="py-2 px-4 bg-transparent w-full rounded-sm border border-brownish-1 focus:border-brownish-2"
             required
           />
         </div>
@@ -26,7 +32,9 @@ const Forms = ({ order, value }) => {
           <input
             name="phone"
             type="tel"
-            className="py-2 px-4 bg-transparent w-full rounded-sm border border-brownish-1 focus:border-brownish-2 "
+            className={`${
+              disable ? "cursor-not-allowed" : " "
+            } py-2 px-4 bg-transparent w-full rounded-sm border border-brownish-1 focus:border-brownish-2`}
             disabled={disable}
             required
           />
@@ -38,8 +46,11 @@ const Forms = ({ order, value }) => {
           <input
             name="address"
             type="text"
-            className="py-2 px-4 bg-transparent w-full rounded-sm border border-brownish-1 focus:border-brownish-2"
+            className={`${
+              disable ? "cursor-not-allowed" : " "
+            } py-2 px-4 bg-transparent w-full rounded-sm border border-brownish-1 focus:border-brownish-2`}
             disabled={disable}
+            value={showAddress}
             required
           />
         </div>
@@ -57,21 +68,31 @@ const Forms = ({ order, value }) => {
 export const action = async ({ request }) => {
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
+  const { cart, orderPrice } = JSON.parse(data.cart);
+  const { name, phone, address } = data;
 
+  // cart,
   const order = {
-    ...data,
-    cart: data.cart,
-    orderPrice: data.orderPrice,
+    name,
+    phone,
+    address,
+    cart,
+    orderPrice,
   };
 
+  console.log(order);
+
   const errors = {};
-  if (!isValidPhone(order.phone))
+  if (data.phone && !isValidPhone(order.phone))
     errors.phone =
       "Please give us your correct phone number. We might need it to contact you.";
 
   if (Object.keys(errors).length > 0) return errors;
 
-  return null;
+  const newOrder = await createOrder(order);
+  console.log(newOrder);
+
+  return redirect(`/order/${newOrder.id}`);
 };
 
 export default Forms;

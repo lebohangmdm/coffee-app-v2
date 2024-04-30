@@ -10,7 +10,7 @@ const AppLayout = () => {
 
   const navigation = useNavigation();
   const loading = navigation.state === "loading";
-  console.log(navigation);
+  // console.log(navigation);
 
   return (
     <>
