@@ -8,6 +8,7 @@ import {
   Register,
   ConfigureCoffee,
   Error,
+  SingleError,
   Order,
 } from "./Pages";
 
@@ -24,26 +25,28 @@ import { action as registerAction } from "./Pages/Register";
 
 const router = createBrowserRouter([
   {
+    path: "/",
     element: <AppLayout />,
     errorElement: <Error />,
     loader: appLoader,
     children: [
       {
-        path: "/",
+        index: true,
         element: <Home />,
         loader: featuredLoader,
-        errorElement: <Error />,
+        errorElement: <SingleError />,
       },
       {
         path: "menu",
         element: <Menu />,
         loader: menuLoader,
-        errorElement: <Error />,
+        errorElement: <SingleError />,
       },
       {
         path: "/:id",
         element: <CoffeeDetail />,
         loader: coffeeLoader,
+        errorElement: <SingleError />,
       },
       {
         path: "about",
@@ -69,20 +72,20 @@ const router = createBrowserRouter([
         loader: configureLoader,
       },
       {
-        path: "register",
-        element: <Register />,
-        action: registerAction,
-      },
-      {
-        path: "login",
-        element: <Login />,
-        action: loginAction,
-      },
-      {
         path: "order/:id",
         element: <Order />,
       },
     ],
+  },
+  {
+    path: "register",
+    element: <Register />,
+    action: registerAction,
+  },
+  {
+    path: "login",
+    element: <Login />,
+    action: loginAction,
   },
 ]);
 

@@ -2,7 +2,7 @@ import React from "react";
 import Hero from "../ui/Section/Hero";
 import Featured from "../ui/Section/Featured";
 import About from "../ui/Section/About";
-import { getCoffees } from "../services/getCoffees";
+import { getCoffees } from "../services/apiCoffee";
 
 const Home = () => {
   return (

@@ -1,5 +1,5 @@
 import { useLoaderData } from "react-router-dom";
-import { getCoffee } from "../services/getCoffees";
+import { getCoffee } from "../services/apiCoffee";
 import NumberInput from "../ui/NumberInput";
 
 import { useDispatch } from "react-redux";

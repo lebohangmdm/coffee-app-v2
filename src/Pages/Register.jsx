@@ -14,9 +14,9 @@ const Register = () => {
   };
 
   return (
-    <section className="pt-16 height-dvh">
+    <section className="flex items-center justify-center h-screen">
       <div className="align-element">
-        <div className="grid items-center justify-center ">
+        <div className=" ">
           <h3 className="text-lg font-semibold text-center text-brownish-2 mb-6 md:mb-8">
             Register
           </h3>

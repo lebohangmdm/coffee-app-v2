@@ -7,6 +7,7 @@ import Register from "./Register";
 import ConfigureCoffee from "./ConfigureCoffee";
 import Order from "./Order";
 import Error from "./Error";
+import SingleError from "./SingleError";
 
 export {
   About,
@@ -17,5 +18,6 @@ export {
   Register,
   ConfigureCoffee,
   Error,
+  SingleError,
   Order,
 };

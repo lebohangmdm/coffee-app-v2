@@ -1,6 +1,6 @@
 import DisplayOptions from "../ui/DisplayOptions";
 import SortSelectOptions from "../ui/SortSelectOptions";
-import { getCoffees } from "../services/getCoffees";
+import { getCoffees } from "../services/apiCoffee";
 import { useLoaderData } from "react-router-dom";
 
 import { useState } from "react";
