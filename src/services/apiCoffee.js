@@ -13,7 +13,7 @@ export async function getCoffees() {
 
 export async function getCoffee(id) {
   const { data, error } = await supabase
-    .from("coffeess")
+    .from("coffees")
     .select("*")
     .eq("id", id)
     .single();

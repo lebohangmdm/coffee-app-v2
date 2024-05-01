@@ -50,7 +50,7 @@ const Forms = ({ order, value, address }) => {
               disable ? "cursor-not-allowed" : " "
             } py-2 px-4 bg-transparent w-full rounded-sm border border-brownish-1 focus:border-brownish-2`}
             disabled={disable}
-            value={showAddress}
+            defaultValue={showAddress}
             required
           />
         </div>

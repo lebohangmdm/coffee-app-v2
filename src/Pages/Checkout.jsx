@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import RadioInput from "../ui/RadioInput";
 import Forms from "../ui/Forms";
 import { useSelector } from "react-redux";
@@ -8,6 +8,7 @@ import { useLoaderData, useNavigation } from "react-router-dom";
 import { getAddress, getPosition } from "../utils/helpers";
 
 const Checkout = () => {
+  const [address, setAddress] = useState("");
   const navigation = useNavigation();
   const [value, setValue] = useState("collect");
   const totalPrice = useSelector(getTotalPrice);
@@ -15,7 +16,18 @@ const Checkout = () => {
   // console.log(totalPrice);
   const deliverySum = value === "delivery" ? 35 : 0;
   const orderPrice = totalPrice + deliverySum;
-  const address = useLoaderData();
+
+  useEffect(() => {
+    const getFullAddress = async () => {
+      const { latitude, longitude } = await getPosition();
+      // console.log(position);
+      const address = await getAddress({ latitude, longitude });
+      setAddress(address);
+    };
+    getFullAddress();
+  }, []);
+
+  console.log(address);
 
   // console.log(navigation);
 
@@ -63,17 +75,23 @@ const Checkout = () => {
   );
 };
 
-export const loader = async () => {
-  // 1) We get the user's geolocation position
-  const positionObj = await getPosition();
-  const position = {
-    latitude: positionObj.coords.latitude,
-    longitude: positionObj.coords.longitude,
-  };
-  // 2) Then we use a reverse geocoding API
-  const address = await getAddress(position);
-  console.log(address);
-  return address;
-};
+// export const loader = async () => {
+//   // 1) We get the user's geolocation position
+//   // const positionObj = await getPosition();
+//   // const position = await getPosition();
+//   const position = await getPosition();
+
+//   // const { latitude, longitude } = {
+//   //   latitude: positionObj.coords.latitude,
+//   //   longitude: positionObj.coords.longitude,
+//   // };
+
+//   // // 2) Then we use a reverse geocoding API
+//   // const address = await getAddress({ latitude, longitude });
+//   // console.log(address);
+
+//   // return address;
+//   return null;
+// };
 
 export default Checkout;

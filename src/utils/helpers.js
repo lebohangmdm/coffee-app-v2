@@ -10,10 +10,30 @@ export const isValidEmail = (str) => {
 };
 
 export function getPosition() {
-  return new Promise(function (resolve, reject) {
-    navigator.geolocation.getCurrentPosition(resolve, reject);
+  return new Promise((resolve, reject) => {
+    if (!navigator.geolocation) {
+      reject("Geolocation is not supported by your browser");
+    } else {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          resolve({
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude,
+          });
+        },
+        (error) => {
+          reject(`Unable to retrieve your location: ${error.message}`);
+        }
+      );
+    }
   });
 }
+
+//   );
+//   return new Promise(function (resolve, reject) {
+//     navigator.geolocation.getCurrentPosition(resolve, reject);
+//   });
+// }
 
 export async function getAddress({ latitude, longitude }) {
   const res = await fetch(
@@ -22,6 +42,7 @@ export async function getAddress({ latitude, longitude }) {
   if (!res.ok) throw Error("Failed getting address");
 
   const data = await res.json();
+  console.log(data);
 
   return data.features[0].properties.formatted;
 }

@@ -7,17 +7,18 @@ import {
   Menu,
   Register,
   ConfigureCoffee,
+  Checkout,
   Error,
   SingleError,
   Order,
+  Cart,
+  CoffeeDetail,
 } from "./Pages";
 
 import AppLayout, { loader as appLoader } from "./ui/AppLayout";
 import { loader as featuredLoader } from "./Pages/Home";
 import { loader as menuLoader } from "./Pages/Menu";
-import CoffeeDetail, { loader as coffeeLoader } from "./Pages/CoffeeDetail";
-import Cart from "./Pages/Cart";
-import Checkout, { loader as checkoutLoader } from "./Pages/Checkout";
+import { loader as coffeeLoader } from "./Pages/CoffeeDetail";
 import { loader as configureLoader } from "./Pages/ConfigureCoffee";
 import { action as checkoutAction } from "./ui/Forms";
 import { action as loginAction } from "./Pages/Login";
@@ -61,10 +62,10 @@ const router = createBrowserRouter([
         element: <Cart />,
       },
       {
-        path: "/checkout",
+        path: "checkout",
         element: <Checkout />,
-        loader: checkoutLoader,
         action: checkoutAction,
+        errorElement: <SingleError />,
       },
       {
         path: "cart/:id",

@@ -8,6 +8,9 @@ import ConfigureCoffee from "./ConfigureCoffee";
 import Order from "./Order";
 import Error from "./Error";
 import SingleError from "./SingleError";
+import Checkout from "./Checkout";
+import CoffeeDetail from "./CoffeeDetail";
+import Cart from "./Cart";
 
 export {
   About,
@@ -15,8 +18,11 @@ export {
   Home,
   Login,
   Menu,
+  Cart,
+  CoffeeDetail,
   Register,
   ConfigureCoffee,
+  Checkout,
   Error,
   SingleError,
   Order,
