@@ -1,29 +1,33 @@
-import { useActionData, useLoaderData, useParams } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 import { getOrder } from "../services/apiOrder";
 import { formatDate, orderNum } from "../utils/helpers";
 import AccessAlarmsIcon from "@mui/icons-material/AccessAlarms";
-import DeliveryDiningIcon from "@mui/icons-material/DeliveryDining";
 
 const Order = () => {
-  const { id } = useParams();
   const data = useLoaderData();
   const orderNumber = orderNum(data.orderNumber);
   const totalPrice = data.orderPrice - data.deliveryCost;
+  const delivery = data.deliveryCost > 0;
+  console.log(data.orderTime);
   return (
     <section className="py-16 bg-white">
-      <div className="align-element">
-        <div className="max-w-5xl mx-auto text-brownish-2 ">
-          <h2 className="mb-8">Order: {orderNumber} </h2>
+      <div className="max-w-6xl mx-auto px-4 md:px-8">
+        <div className="max-w-4xl mx-auto text-brownish-2 bg-gray-200 p-4 md:p-6 ">
+          <h2 className="mb-8 md:mb-12 text-xl md:text-2xl font-semibold">
+            Order: {orderNumber}{" "}
+          </h2>
 
           <div className="space-y-4">
             <div className="space-y-2">
               <div className="flex  justify-between">
-                <div className="flex flex-col sm:gap-1 md:flex-row md:gap-2 md:items-center">
+                <div className="flex flex-col sm:flex-row sm:gap-2 sm:items-center">
                   <span>
                     <AccessAlarmsIcon />
                   </span>
                   <p className="text-sm capitalize max-w-44 sm:text-base sm:max-w-full md:text-lg">
-                    Delivery will take to 15-30 minutes
+                    {delivery
+                      ? "Delivery will take to 15-30 minutes"
+                      : "Order will be between after 5-15 minutes"}
                   </p>
                 </div>
                 <p className="text-sm flex items-center md:text-lg">
@@ -37,12 +41,12 @@ const Order = () => {
                 return (
                   <div
                     key={item.name}
-                    className="flex justify-between items-center"
+                    className="flex justify-between items-center space-y-2"
                   >
-                    <p className="text-sm capitalize font-serif sm:text-base md:text-lg text-brownish-1">
+                    <p className="capitalize font-serif max-w-52 sm:max-w-full  sm:text-lg  text-brownish-1">
                       <span>{item.quantity} X</span> {item.name}
                     </p>
-                    <p className="text-sm sm:text-base md:text-lg  font-semibold">
+                    <p className=" md:text-lg  font-semibold">
                       R{item.totalPrice}
                     </p>
                   </div>
@@ -50,10 +54,24 @@ const Order = () => {
               })}
             </div>
 
-            <div>
-              <p>Price Coffee: {totalPrice}</p>
-              <p>Delivery Cost: {data.deliveryCost} </p>
-              <p>Total Cost : {data.orderPrice} </p>
+            <div className="space-y-1 ">
+              <div className="flex items-center justify-between">
+                <p>
+                  Price Coffee:{" "}
+                  <span className="font-medium">R{totalPrice}</span>
+                </p>
+
+                {delivery && (
+                  <p>
+                    Delivery Cost:{" "}
+                    <span className="font-medium">R{data.deliveryCost} </span>
+                  </p>
+                )}
+              </div>
+              <p className="text-lg uppercase">
+                Total Cost :{" "}
+                <span className="font-bold ">R{data.orderPrice}</span>
+              </p>
             </div>
           </div>
         </div>
