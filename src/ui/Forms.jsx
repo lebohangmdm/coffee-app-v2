@@ -7,9 +7,6 @@ const Forms = ({ order, value, address }) => {
   const formErrors = useActionData();
   const showAddress = value === "delivery" ? address : "";
   console.log(formErrors);
-  console.log(order);
-
-  console.log(address);
 
   return (
     <Form method="POST" action="/checkout">
@@ -68,7 +65,7 @@ const Forms = ({ order, value, address }) => {
 export const action = async ({ request }) => {
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
-  const { cart, orderPrice } = JSON.parse(data.cart);
+  const { cart, orderPrice, deliverySum: deliveryCost } = JSON.parse(data.cart);
   const { name, phone, address } = data;
 
   // cart,
@@ -78,6 +75,7 @@ export const action = async ({ request }) => {
     address,
     cart,
     orderPrice,
+    deliveryCost,
   };
 
   console.log(order);
@@ -90,9 +88,10 @@ export const action = async ({ request }) => {
   if (Object.keys(errors).length > 0) return errors;
 
   const newOrder = await createOrder(order);
-  console.log(newOrder);
+  const { id } = newOrder[0];
+  console.log(id);
 
-  return redirect(`/order/${newOrder.id}`);
+  return redirect(`/order/${id}`);
 };
 
 export default Forms;

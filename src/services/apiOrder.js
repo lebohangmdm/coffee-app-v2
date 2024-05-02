@@ -17,7 +17,7 @@ export const createOrder = async (newOrder) => {
 export const getOrder = async (id) => {
   const { data, error } = await supabase
     .from("orders")
-    .select("id")
+    .select("*")
     .eq("id", id)
     .single();
 

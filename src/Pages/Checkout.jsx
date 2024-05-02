@@ -13,21 +13,18 @@ const Checkout = () => {
   const [value, setValue] = useState("collect");
   const totalPrice = useSelector(getTotalPrice);
   const cart = useSelector(getCart);
-  // console.log(totalPrice);
   const deliverySum = value === "delivery" ? 35 : 0;
   const orderPrice = totalPrice + deliverySum;
 
   useEffect(() => {
     const getFullAddress = async () => {
       const { latitude, longitude } = await getPosition();
-      // console.log(position);
+
       const address = await getAddress({ latitude, longitude });
       setAddress(address);
     };
     getFullAddress();
   }, []);
-
-  console.log(address);
 
   // console.log(navigation);
 
@@ -36,6 +33,7 @@ const Checkout = () => {
   const order = {
     cart,
     orderPrice,
+    deliverySum,
   };
 
   return (
@@ -74,24 +72,5 @@ const Checkout = () => {
     </section>
   );
 };
-
-// export const loader = async () => {
-//   // 1) We get the user's geolocation position
-//   // const positionObj = await getPosition();
-//   // const position = await getPosition();
-//   const position = await getPosition();
-
-//   // const { latitude, longitude } = {
-//   //   latitude: positionObj.coords.latitude,
-//   //   longitude: positionObj.coords.longitude,
-//   // };
-
-//   // // 2) Then we use a reverse geocoding API
-//   // const address = await getAddress({ latitude, longitude });
-//   // console.log(address);
-
-//   // return address;
-//   return null;
-// };
 
 export default Checkout;

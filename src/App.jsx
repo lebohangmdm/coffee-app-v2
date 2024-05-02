@@ -23,6 +23,7 @@ import { loader as configureLoader } from "./Pages/ConfigureCoffee";
 import { action as checkoutAction } from "./ui/Forms";
 import { action as loginAction } from "./Pages/Login";
 import { action as registerAction } from "./Pages/Register";
+import { loader as orderLoader } from "./Pages/Order";
 
 const router = createBrowserRouter([
   {
@@ -75,6 +76,8 @@ const router = createBrowserRouter([
       {
         path: "order/:id",
         element: <Order />,
+        loader: orderLoader,
+        errorElement: <SingleError />,
       },
     ],
   },
