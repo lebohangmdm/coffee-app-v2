@@ -4,7 +4,7 @@ import MenuItem from "@mui/material/MenuItem";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { useState } from "react";
 import { Avatar, ListSubheader } from "@mui/material";
-import { NavLink, redirect, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { logout } from "../../services/apiAuth";
 
 export default function AuthMenu({ user, auth }) {
@@ -18,7 +18,7 @@ export default function AuthMenu({ user, auth }) {
   };
   const navigate = useNavigate();
 
-  const avatarLetter = user?.username.substring(0, 1).toUpperCase();
+  const avatarLetter = user?.firstName.substring(0, 1).toUpperCase();
 
   const handleLogout = async () => {
     await logout();

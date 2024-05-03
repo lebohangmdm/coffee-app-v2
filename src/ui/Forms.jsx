@@ -1,6 +1,8 @@
 import { Form, redirect, useActionData } from "react-router-dom";
 import { isValidPhone } from "../utils/helpers";
 import { createOrder } from "../services/apiOrder";
+import store from "../store";
+import { clearCart } from "../features/cart/cartSlice";
 
 const Forms = ({ order, value, address }) => {
   const disable = value === "collect";
@@ -90,6 +92,8 @@ export const action = async ({ request }) => {
   const newOrder = await createOrder(order);
   const { id } = newOrder[0];
   console.log(id);
+
+  store.dispatch(clearCart());
 
   return redirect(`/order/${id}`);
 };

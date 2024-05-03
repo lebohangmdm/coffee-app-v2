@@ -25,6 +25,8 @@ import { action as checkoutAction } from "./ui/Forms";
 import { action as loginAction } from "./Pages/Login";
 import { action as registerAction } from "./Pages/Register";
 import { loader as orderLoader } from "./Pages/Order";
+import { loader as profileLoader } from "./Pages/Profile";
+import { action as updateAction } from "./Pages/Profile";
 
 const router = createBrowserRouter([
   {
@@ -83,6 +85,9 @@ const router = createBrowserRouter([
       {
         path: "profile",
         element: <Profile />,
+        loader: profileLoader,
+        action: updateAction,
+        errorElement: <SingleError />,
       },
     ],
   },

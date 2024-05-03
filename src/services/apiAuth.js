@@ -12,6 +12,7 @@ export const register = async ({ firstName, email, password }) => {
   });
 
   if (error) {
+    console.log(error);
     throw new Error(error.message);
   }
 
@@ -25,6 +26,7 @@ export const login = async ({ email, password }) => {
   });
 
   if (error) {
+    console.log(error);
     throw new Error(error.message);
   }
 
@@ -44,4 +46,21 @@ export async function getCurrentUser() {
 export async function logout() {
   const { error } = await supabase.auth.signOut();
   if (error) throw new Error(error.message);
+}
+
+export async function updateCurrentUser({ password, firstName }) {
+  //  Update password || fullName
+
+  let updateData;
+  if (password) updateData = { password };
+  if (firstName) updateData = { data: { firstName } };
+
+  const { data, error } = await supabase.auth.updateUser(updateData);
+
+  if (error) {
+    console.log(error);
+    throw new Error(error.message);
+  }
+
+  return data;
 }

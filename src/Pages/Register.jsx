@@ -153,8 +153,8 @@ export const action = async ({ request }) => {
   console.log(email);
   // validate the fields
 
-  if (!firstName.length || firstName === "") {
-    errors.password = "Password must be more than 5 characters";
+  if (!firstName.length || firstName.trim().length === 0) {
+    errors.firstName = "Please provide a valid name";
   }
 
   if (!isValidEmail(email)) {
