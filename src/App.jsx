@@ -13,6 +13,7 @@ import {
   Order,
   Cart,
   CoffeeDetail,
+  Profile,
 } from "./Pages";
 
 import AppLayout, { loader as appLoader } from "./ui/AppLayout";
@@ -78,6 +79,10 @@ const router = createBrowserRouter([
         element: <Order />,
         loader: orderLoader,
         errorElement: <SingleError />,
+      },
+      {
+        path: "profile",
+        element: <Profile />,
       },
     ],
   },

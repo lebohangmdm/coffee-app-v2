@@ -11,6 +11,7 @@ import SingleError from "./SingleError";
 import Checkout from "./Checkout";
 import CoffeeDetail from "./CoffeeDetail";
 import Cart from "./Cart";
+import Profile from "./Profile";
 
 export {
   About,
@@ -26,4 +27,5 @@ export {
   Error,
   SingleError,
   Order,
+  Profile,
 };
