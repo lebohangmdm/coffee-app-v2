@@ -5,7 +5,8 @@ const Btn = ({ type, onClick, children, to }) => {
 
   const styles = {
     full: base + " w-full text-center",
-    medium: base + " md:px-8 md:py-3",
+    medium: base + " md:px-6",
+    base: base,
   };
 
   if (to)

@@ -27,3 +27,14 @@ export const getOrder = async (id) => {
 
   return data;
 };
+
+export const getOrders = async () => {
+  const { data, error } = await supabase.from("orders").select("*");
+
+  if (error) {
+    console.error(error);
+    throw new Error("Orders could not be loaded");
+  }
+
+  return data;
+};

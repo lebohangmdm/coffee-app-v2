@@ -14,6 +14,7 @@ import {
   Cart,
   CoffeeDetail,
   Profile,
+  Orders,
 } from "./Pages";
 
 import AppLayout, { loader as appLoader } from "./ui/AppLayout";
@@ -27,6 +28,9 @@ import { action as registerAction } from "./Pages/Register";
 import { loader as orderLoader } from "./Pages/Order";
 import { loader as profileLoader } from "./Pages/Profile";
 import { action as updateAction } from "./Pages/Profile";
+import { loader as contactLoader } from "./Pages/Contact";
+import { action as contactAction } from "./Pages/Contact";
+import { loader as ordersLoader } from "./ui/Table";
 
 const router = createBrowserRouter([
   {
@@ -60,6 +64,9 @@ const router = createBrowserRouter([
       {
         path: "contact",
         element: <Contact />,
+        loader: contactLoader,
+        action: contactAction,
+        errorElement: <SingleError />,
       },
       {
         path: "cart",
@@ -75,6 +82,11 @@ const router = createBrowserRouter([
         path: "cart/:id",
         element: <ConfigureCoffee />,
         loader: configureLoader,
+      },
+      {
+        path: "orders",
+        element: <Orders />,
+        loader: ordersLoader,
       },
       {
         path: "order/:id",

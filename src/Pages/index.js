@@ -12,6 +12,7 @@ import Checkout from "./Checkout";
 import CoffeeDetail from "./CoffeeDetail";
 import Cart from "./Cart";
 import Profile from "./Profile";
+import Orders from "./Orders";
 
 export {
   About,
@@ -28,4 +29,5 @@ export {
   SingleError,
   Order,
   Profile,
+  Orders,
 };

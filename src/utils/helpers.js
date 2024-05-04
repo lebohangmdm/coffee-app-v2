@@ -43,11 +43,9 @@ export function getPosition() {
   });
 }
 
-//   );
-//   return new Promise(function (resolve, reject) {
-//     navigator.geolocation.getCurrentPosition(resolve, reject);
-//   });
-// }
+export const formatAddress = (str) => {
+  return str.split(", ").slice(0, 2).join(", ");
+};
 
 export async function getAddress({ latitude, longitude }) {
   const res = await fetch(
