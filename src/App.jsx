@@ -30,7 +30,7 @@ import { loader as profileLoader } from "./Pages/Profile";
 import { action as updateAction } from "./Pages/Profile";
 import { loader as contactLoader } from "./Pages/Contact";
 import { action as contactAction } from "./Pages/Contact";
-import { loader as ordersLoader } from "./ui/Table";
+import { loader as ordersLoader } from "./Pages/Orders";
 
 const router = createBrowserRouter([
   {
@@ -87,6 +87,7 @@ const router = createBrowserRouter([
         path: "orders",
         element: <Orders />,
         loader: ordersLoader,
+        errorElement: <SingleError />,
       },
       {
         path: "order/:id",
