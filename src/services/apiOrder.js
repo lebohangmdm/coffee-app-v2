@@ -5,6 +5,7 @@ export const createOrder = async (newOrder) => {
     .from("orders")
     .insert([newOrder])
     .select();
+  console.log(data);
 
   if (error) {
     console.error(error);

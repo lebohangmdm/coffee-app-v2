@@ -25,3 +25,23 @@ export async function getCoffee(id) {
 
   return data;
 }
+
+// create TABLE USERS (
+//   id uuid references auth.users not null primary key,
+//   username text,
+//   email text,
+//   password text
+// );
+
+// create OR replace function public.handle_newer_user()
+// returns trigger as $$
+// begin
+//   insert into public.users (id, username, email, password)
+//   values (new.id, new.username, new.email, new.password);
+//   return new;
+// end;
+// $$ language plpgsql security definer;
+
+// create trigger on_newer_user
+//   after insert on auth.users
+//   for each row execute procedure public.handle_new_user()

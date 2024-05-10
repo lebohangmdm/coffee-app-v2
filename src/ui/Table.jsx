@@ -14,7 +14,7 @@ function createData(id, name, address, quantity, cost, date) {
   return { id, name, address, quantity, cost, date };
 }
 
-const BasicTable = ({ data }) => {
+const BasicTable = ({ data, user }) => {
   const rows = data.map((item) => {
     const { id, name, address, orderPrice, orderTime, cart } = item;
     const totalQuantity = cart.reduce(
@@ -39,8 +39,10 @@ const BasicTable = ({ data }) => {
   const handlePaginate = (pageNumber) => {
     return setCurrentPage(pageNumber);
   };
-
-  const handleDelete = async () => {};
+  const { id } = user;
+  const handleDelete = async () => {
+    await deleteOrders();
+  };
 
   return (
     <div>

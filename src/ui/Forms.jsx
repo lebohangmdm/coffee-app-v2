@@ -1,13 +1,17 @@
-import { Form, redirect, useActionData } from "react-router-dom";
-import { isValidPhone } from "../utils/helpers";
+import { Form, redirect, useActionData, useNavigation } from "react-router-dom";
+
+import { formatDate, isValidPhone, orderNum } from "../utils/helpers";
 import { createOrder } from "../services/apiOrder";
 import store from "../store";
 import { clearCart } from "../features/cart/cartSlice";
+import { getCurrentUser } from "../services/apiAuth";
 
 const Forms = ({ order, value, address }) => {
   const disable = value === "collect";
   const formErrors = useActionData();
   const showAddress = value === "delivery" ? address : "";
+  const navigation = useNavigation();
+  const submitting = navigation.state === "submitting";
   console.log(formErrors);
 
   return (
@@ -56,8 +60,11 @@ const Forms = ({ order, value, address }) => {
       </div>
       <div>
         <input type="hidden" name="cart" value={JSON.stringify(order)} />
-        <button className="mt-8 w-full text-base font-medium rounded-sm uppercase py-2 px-4  bg-brownish-1 text-white hover:border-brownish-2 transition-all duration-160">
-          Place your order
+        <button
+          disabled={submitting}
+          className="mt-8 w-full text-base font-medium rounded-sm uppercase py-2 px-4  bg-brownish-1 text-white hover:border-brownish-2 transition-all duration-160"
+        >
+          {submitting ? "Placing..." : "Place your order"}
         </button>
       </div>
     </Form>
@@ -69,14 +76,24 @@ export const action = async ({ request }) => {
   const data = Object.fromEntries(formData);
   const { cart, orderPrice, deliverySum: deliveryCost } = JSON.parse(data.cart);
   const { name, phone, address } = data;
+  const user = await getCurrentUser();
+  const id = user?.id;
+  const place = address === undefined ? "At the Store" : address;
+
+  const orderNumber = orderNum();
+  const time = new Date();
+  const orderTime = formatDate(time);
 
   // cart,
   const order = {
+    user_id: id,
     name,
+    address: place,
     phone,
-    address,
     cart,
     orderPrice,
+    orderNumber,
+    orderTime,
     deliveryCost,
   };
 
@@ -89,13 +106,12 @@ export const action = async ({ request }) => {
 
   if (Object.keys(errors).length > 0) return errors;
 
+  console.log(errors);
   const newOrder = await createOrder(order);
-  const { id } = newOrder[0];
-  console.log(id);
 
   store.dispatch(clearCart());
 
-  return redirect(`/order/${id}`);
+  return redirect(`/order/${newOrder[0].id}`);
 };
 
 export default Forms;

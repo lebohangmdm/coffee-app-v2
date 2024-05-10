@@ -1,3 +1,5 @@
+import { v4 as uuidv4 } from "uuid";
+
 export const isValidPhone = (str) =>
   /^\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/.test(
     str
@@ -10,17 +12,18 @@ export const isValidEmail = (str) => {
 };
 
 export function formatDate(dateStr) {
-  return new Intl.DateTimeFormat("en", {
+  return new Intl.DateTimeFormat("en-ZA", {
     day: "numeric",
     month: "short",
     hour: "2-digit",
     minute: "2-digit",
+    timeZone: "Africa/Johannesburg",
   }).format(new Date(dateStr));
 }
 
-export const orderNum = (str) => {
-  const num = Math.floor(Math.random() * 100) + 1;
-  return `#${num}${str.substring(0, 7)}`;
+export const orderNum = () => {
+  const str = uuidv4();
+  return `#${str.substring(0, 7)}`;
 };
 
 export function getPosition() {

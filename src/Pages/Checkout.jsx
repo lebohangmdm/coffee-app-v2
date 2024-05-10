@@ -4,12 +4,10 @@ import Forms from "../ui/Forms";
 import { useSelector } from "react-redux";
 import { getCart, getTotalPrice } from "../features/cart/cartSlice";
 import EmptyCart from "../ui/EmptyCart";
-import { useLoaderData, useNavigation } from "react-router-dom";
 import { getAddress, getPosition } from "../utils/helpers";
 
 const Checkout = () => {
   const [address, setAddress] = useState("");
-  const navigation = useNavigation();
   const [value, setValue] = useState("collect");
   const totalPrice = useSelector(getTotalPrice);
   const cart = useSelector(getCart);
@@ -25,8 +23,6 @@ const Checkout = () => {
     };
     getFullAddress();
   }, []);
-
-  // console.log(navigation);
 
   // if (totalPrice === 0) return <EmptyCart />;
 

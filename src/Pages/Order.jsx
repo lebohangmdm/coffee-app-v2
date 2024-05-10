@@ -1,11 +1,11 @@
 import { useLoaderData } from "react-router-dom";
 import { getOrder } from "../services/apiOrder";
-import { formatDate, orderNum } from "../utils/helpers";
+import { formatDate } from "../utils/helpers";
 import AccessAlarmsIcon from "@mui/icons-material/AccessAlarms";
 
 const Order = () => {
   const data = useLoaderData();
-  const orderNumber = orderNum(data.orderNumber);
+  console.log(data);
   const totalPrice = data.orderPrice - data.deliveryCost;
   const delivery = data.deliveryCost > 0;
   console.log(data.orderTime);
@@ -14,7 +14,7 @@ const Order = () => {
       <div className="max-w-6xl mx-auto px-4 md:px-8">
         <div className="max-w-4xl mx-auto text-brownish-2 bg-gray-200 p-4 md:p-6 ">
           <h2 className="mb-8 md:mb-12 text-xl md:text-2xl font-semibold">
-            Order: {orderNumber}{" "}
+            Order: {data.orderNumber}
           </h2>
 
           <div className="space-y-4">

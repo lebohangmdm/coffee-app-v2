@@ -130,7 +130,7 @@ export const action = async ({ request }) => {
   const user = await login({ email, password });
   console.log(user);
 
-  return redirect("/menu");
+  return redirect("/");
 };
 
 export default Login;

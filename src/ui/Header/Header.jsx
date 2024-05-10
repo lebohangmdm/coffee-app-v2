@@ -6,6 +6,7 @@ import AuthMenu from "./AuthMenu";
 import CartIcon from "./CartIcon";
 
 const Header = ({ user, auth }) => {
+  console.log(auth);
   return (
     <header className="p-6 relative bg-whitesmoke">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">

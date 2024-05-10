@@ -1,32 +1,20 @@
-import { useLoaderData } from "react-router-dom";
+import { redirect, useLoaderData } from "react-router-dom";
 import { getOrders } from "../services/apiOrder";
 import Table from "../ui/Table";
-import Pagination from "../ui/Pagination";
-import { useState } from "react";
+
+import { getCurrentUser } from "../services/apiAuth";
 
 const Orders = () => {
-  const data = useLoaderData();
-
-  // const [currentPage, setCurrentPage] = useState(1);
-  // const [ordersPerPage] = useState(10);
-
-  // // get current recipes
-  // const indexOfLastOrder = currentPage * ordersPerPage;
-  // const indexOfFirstOrder = indexOfLastOrder - ordersPerPage;
-  // const currentOrders = data.slice(indexOfFirstOrder, indexOfLastOrder);
-
-  // const handlePaginate = (pageNumber) => {
-  //   return setCurrentPage(pageNumber);
-  // };
+  const { orders, user } = useLoaderData();
 
   return (
-    <section className="py-16">
+    <section className="py-16 bg-whitesmoke">
       <div className="align-element">
         <h3 className="text-2xl font-serif text-brownish-1 font-semibold md:text-3xl lg:text-4xl mb-8  ">
           My Order
         </h3>
         <div className="space-y-6 md:space-y-8">
-          <Table data={data} />
+          <Table data={orders} user={user} />
         </div>
       </div>
     </section>
@@ -34,9 +22,12 @@ const Orders = () => {
 };
 
 export const loader = async () => {
-  const data = await getOrders();
+  const orders = await getOrders();
+  const user = await getCurrentUser();
 
-  return data;
+  if (!user) return redirect("/login");
+
+  return { orders, user };
 };
 
 export default Orders;

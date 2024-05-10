@@ -4,7 +4,6 @@ import { getCurrentUser } from "../services/apiAuth";
 import { Form, useActionData, useLoaderData } from "react-router-dom";
 import { isValidEmail, isValidPhone } from "../utils/helpers";
 import Btn from "../ui/Btn";
-import { createComment } from "../services/apiComments";
 
 const Contact = () => {
   const data = useLoaderData();
@@ -158,9 +157,10 @@ export const action = async ({ request }) => {
     comment,
   };
 
-  const commentObj = await createComment(newComment);
-  console.log(commentObj);
-  return commentObj;
+  // const commentObj = await createComment(newComment);
+  // console.log(commentObj);
+  // return commentObj;
+  return null;
 };
 
 export default Contact;
