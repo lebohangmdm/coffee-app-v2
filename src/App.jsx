@@ -31,6 +31,7 @@ import { action as updateAction } from "./Pages/Profile";
 import { loader as contactLoader } from "./Pages/Contact";
 import { action as contactAction } from "./Pages/Contact";
 import { loader as ordersLoader } from "./Pages/Orders";
+import { loader as checkoutLoader } from "./ui/Forms";
 
 const router = createBrowserRouter([
   {
@@ -75,6 +76,7 @@ const router = createBrowserRouter([
       {
         path: "checkout",
         element: <Checkout />,
+        loader: checkoutLoader,
         action: checkoutAction,
         errorElement: <SingleError />,
       },

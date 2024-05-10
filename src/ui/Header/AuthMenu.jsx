@@ -18,7 +18,13 @@ export default function AuthMenu({ user, auth }) {
   };
   const navigate = useNavigate();
 
-  const avatarLetter = user?.firstName.substring(0, 1).toUpperCase();
+  console.log(user);
+  [];
+  const avatarLetter = user?.fullName
+    .split(" ")
+    .at(0)
+    .substring(0, 1)
+    .toUpperCase();
 
   const handleLogout = async () => {
     await logout();

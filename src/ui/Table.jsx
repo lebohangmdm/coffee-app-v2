@@ -14,7 +14,7 @@ function createData(id, name, address, quantity, cost, date) {
   return { id, name, address, quantity, cost, date };
 }
 
-const BasicTable = ({ data, user }) => {
+const BasicTable = ({ data }) => {
   const rows = data.map((item) => {
     const { id, name, address, orderPrice, orderTime, cart } = item;
     const totalQuantity = cart.reduce(
@@ -39,10 +39,6 @@ const BasicTable = ({ data, user }) => {
   const handlePaginate = (pageNumber) => {
     return setCurrentPage(pageNumber);
   };
-  const { id } = user;
-  const handleDelete = async () => {
-    await deleteOrders();
-  };
 
   return (
     <div>
@@ -50,12 +46,6 @@ const BasicTable = ({ data, user }) => {
         <p className="text-sm">
           Total order: <strong>{data.length}</strong>
         </p>
-        <button
-          className="py-1 px-2 rounded-full bg-brownish-1 text-white text-sm"
-          onClick={handleDelete}
-        >
-          Clear Orders
-        </button>
       </div>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">

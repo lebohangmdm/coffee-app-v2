@@ -9,7 +9,7 @@ const Contact = () => {
   const data = useLoaderData();
   const errors = useActionData();
 
-  const { email, firstName } = data?.user_metadata;
+  const { email, fullName } = data?.user_metadata;
 
   console.log(errors);
 
@@ -54,12 +54,12 @@ const Contact = () => {
                 </label>
                 <input
                   type={"text"}
-                  name={"firstName"}
-                  defaultValue={firstName}
+                  name={"fullName"}
+                  defaultValue={fullName}
                   className="py-2  px-4 text-sm bg-transparent w-full rounded-sm focus:outline-none border border-brownish-1 focus:border-brownish-2"
                   required
                 />
-                <p className="mt-2 text-sm">{errors?.firstName}</p>
+                <p className="mt-2 text-sm">{errors?.fullName}</p>
               </div>
 
               <div className="space-y-1">
@@ -102,7 +102,7 @@ const Contact = () => {
                 ></textarea>
                 <p className="mt-2 text-sm">{errors?.comment}</p>
               </div>
-              <Btn type={"medium"}>Send</Btn>
+              <Btn type={"medium"}>submit</Btn>
             </Form>
           </div>
         </div>
@@ -120,14 +120,14 @@ export const action = async ({ request }) => {
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
 
-  const { firstName, email, phone, comment } = data;
+  const { fullName, email, phone, comment } = data;
 
   const errors = {};
 
   // validate the fields
 
-  if (!firstName.length || firstName.trim().length === 0) {
-    errors.firstName = "Please provide a valid name";
+  if (!fullName.length || fullName.trim().length === 0) {
+    errors.fullName = "Please provide a valid name";
   }
 
   if (!isValidEmail(email)) {
@@ -151,7 +151,7 @@ export const action = async ({ request }) => {
     return errors;
   }
   const newComment = {
-    firstName,
+    fullName,
     email,
     phone,
     comment,

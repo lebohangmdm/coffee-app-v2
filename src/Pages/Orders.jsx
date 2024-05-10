@@ -5,7 +5,7 @@ import Table from "../ui/Table";
 import { getCurrentUser } from "../services/apiAuth";
 
 const Orders = () => {
-  const { orders, user } = useLoaderData();
+  const orders = useLoaderData();
 
   return (
     <section className="py-16 bg-whitesmoke">
@@ -14,7 +14,7 @@ const Orders = () => {
           My Order
         </h3>
         <div className="space-y-6 md:space-y-8">
-          <Table data={orders} user={user} />
+          <Table data={order} />
         </div>
       </div>
     </section>
@@ -27,7 +27,7 @@ export const loader = async () => {
 
   if (!user) return redirect("/login");
 
-  return { orders, user };
+  return orders;
 };
 
 export default Orders;

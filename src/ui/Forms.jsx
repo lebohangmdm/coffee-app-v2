@@ -1,4 +1,10 @@
-import { Form, redirect, useActionData, useNavigation } from "react-router-dom";
+import {
+  Form,
+  redirect,
+  useActionData,
+  useLoaderData,
+  useNavigation,
+} from "react-router-dom";
 
 import { formatDate, isValidPhone, orderNum } from "../utils/helpers";
 import { createOrder } from "../services/apiOrder";
@@ -13,17 +19,19 @@ const Forms = ({ order, value, address }) => {
   const navigation = useNavigation();
   const submitting = navigation.state === "submitting";
   console.log(formErrors);
+  const fullName = useLoaderData();
 
   return (
     <Form method="POST" action="/checkout">
       <div className="space-y-4">
         <div className="space-y-1">
           <label className="capitalize text-brownish-2 font-medium md:text-lg">
-            First Name
+            full name
           </label>
           <input
             type="text"
-            name="name"
+            name="FullName"
+            defaultValue={fullName}
             className="py-2 px-4 bg-transparent w-full rounded-sm border border-brownish-1 focus:border-brownish-2"
             required
           />
@@ -75,7 +83,7 @@ export const action = async ({ request }) => {
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
   const { cart, orderPrice, deliverySum: deliveryCost } = JSON.parse(data.cart);
-  const { name, phone, address } = data;
+  const { fullName, phone, address } = data;
   const user = await getCurrentUser();
   const id = user?.id;
   const place = address === undefined ? "At the Store" : address;
@@ -87,7 +95,7 @@ export const action = async ({ request }) => {
   // cart,
   const order = {
     user_id: id,
-    name,
+    fullName,
     address: place,
     phone,
     cart,
@@ -112,6 +120,12 @@ export const action = async ({ request }) => {
   store.dispatch(clearCart());
 
   return redirect(`/order/${newOrder[0].id}`);
+};
+
+export const loader = async () => {
+  const data = await getCurrentUser();
+
+  return data.user_metadata?.fullName;
 };
 
 export default Forms;

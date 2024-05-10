@@ -26,8 +26,8 @@ const Register = () => {
               <Grid item xs={12}>
                 <TextField
                   fullWidth
-                  label="First Name"
-                  name="firstName"
+                  label="full Name"
+                  name="fullName"
                   variant="outlined"
                   required
                   InputLabelProps={{ style: labelStyle }}
@@ -39,9 +39,9 @@ const Register = () => {
                     },
                   }}
                 />
-                {formErrors?.firstName && (
+                {formErrors?.fullName && (
                   <p className="text-sm mt-2 text-red-500">
-                    {formErrors.firstName}
+                    {formErrors.fullName}
                   </p>
                 )}
               </Grid>
@@ -146,15 +146,16 @@ export const action = async ({ request }) => {
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
 
-  const { firstName, email, password, confirmPassword } = data;
+  const { fullName, email, password, confirmPassword } = data;
 
   const errors = {};
 
   console.log(email);
   // validate the fields
+  console.log(fullName);
 
-  if (!firstName.length || firstName.trim().length === 0) {
-    errors.firstName = "Please provide a valid name";
+  if (!fullName.length || fullName.trim().length === 0) {
+    errors.fullName = "Please provide a valid name";
   }
 
   if (!isValidEmail(email)) {
@@ -174,8 +175,8 @@ export const action = async ({ request }) => {
     return errors;
   }
 
-  const data1 = await register({ firstName, email, password });
-  console.log(data1);
+  await register({ fullName, email, password });
+
   return redirect("/login");
 };
 

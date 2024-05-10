@@ -1,12 +1,12 @@
 import supabase from "./supabase";
 
-export const register = async ({ firstName, email, password }) => {
+export const register = async ({ fullName, email, password }) => {
   const { data, error } = await supabase.auth.signUp({
     email,
     password,
     options: {
       data: {
-        firstName,
+        fullName,
       },
     },
   });
@@ -48,12 +48,12 @@ export async function logout() {
   if (error) throw new Error(error.message);
 }
 
-export async function updateCurrentUser({ password, firstName }) {
+export async function updateCurrentUser({ password, fullName }) {
   //  Update password || fullName
 
   let updateData;
   if (password) updateData = { password };
-  if (firstName) updateData = { data: { firstName } };
+  if (fullName) updateData = { data: { fullName } };
 
   const { data, error } = await supabase.auth.updateUser(updateData);
 
