@@ -30,7 +30,7 @@ const Forms = ({ order, value, address }) => {
           </label>
           <input
             type="text"
-            name="FullName"
+            name="fullName"
             defaultValue={fullName}
             className="py-2 px-4 bg-transparent w-full rounded-sm border border-brownish-1 focus:border-brownish-2"
             required
@@ -92,10 +92,12 @@ export const action = async ({ request }) => {
   const time = new Date();
   const orderTime = formatDate(time);
 
+  console.log(fullName);
+
   // cart,
   const order = {
     user_id: id,
-    fullName,
+    name: fullName,
     address: place,
     phone,
     cart,

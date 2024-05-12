@@ -1,22 +1,31 @@
 import DisplayOptions from "../ui/DisplayOptions";
 import SortSelectOptions from "../ui/SortSelectOptions";
 import { getCoffees } from "../services/apiCoffee";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useSearchParams } from "react-router-dom";
 
 import { useState } from "react";
 import GridList from "../ui/GridList";
 import ViewList from "../ui/ViewList";
 
-const Menu = () => {
+const Menu = ({ params }) => {
   const data = useLoaderData();
+  console.log(params);
 
-  const categories = new Set(
-    data.map((coffee) => coffee.category.replace(/-/g, " "))
-  );
-  const allCategories = ["all", ...categories];
+  const allCategories = [
+    "all",
+    "cold-coffee",
+    "cold-tea",
+    "frappuccino",
+    "hot-coffee",
+    "hot-tea",
+  ];
   const [category, setCategory] = useState("all");
-  const [selectedValue, setSelectedValue] = useState("input");
+  const [sortBy, setSortBy] = useState("input");
   const [displayType, setDisplayType] = useState("grid");
+  const [searchParams, setSearchParams] = useSearchParams();
+  const queryParamValue = searchParams.get("category");
+
+  console.log(queryParamValue);
 
   let coffees;
   if (category) {
@@ -26,15 +35,32 @@ const Menu = () => {
         : data.filter((coffee) => coffee.category === category);
   }
 
-  if (selectedValue === "input") coffees = coffees;
-  if (selectedValue === "a-z")
+  if (queryParamValue) {
+    coffees =
+      queryParamValue === "all"
+        ? data
+        : data.filter((coffee) => coffee.category === queryParamValue);
+  }
+
+  console.log(queryParamValue, category);
+
+  console.log(coffees);
+
+  if (sortBy === "input") coffees = coffees;
+  if (sortBy === "a-z")
     coffees = coffees.slice().sort((a, b) => a.name.localeCompare(b.name));
-  if (selectedValue === "z-a")
+  if (sortBy === "z-a")
     coffees = coffees.slice().sort((a, b) => b.name.localeCompare(a.name));
-  if (selectedValue === "high")
+  if (sortBy === "high")
     coffees = coffees.slice().sort((a, b) => b.unitPrice - a.unitPrice);
-  if (selectedValue === "low")
+  if (sortBy === "low")
     coffees = coffees.slice().sort((a, b) => a.unitPrice - b.unitPrice);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    searchParams.set("sort", sortBy);
+    setSearchParams(searchParams);
+  };
 
   return (
     <>
@@ -64,13 +90,17 @@ const Menu = () => {
               <ul className="flex flex-col space-y-2">
                 {allCategories.map((category) => {
                   return (
-                    <li
+                    <button
                       key={category}
                       className="text-lg font-medium uppercase cursor-pointer"
-                      onClick={() => setCategory(category.replace(/ /g, "-"))}
+                      onClick={() => {
+                        setCategory(category.replace(/ /g, "-"));
+                        searchParams.set("category", category);
+                        setSearchParams(searchParams);
+                      }}
                     >
-                      {category}
-                    </li>
+                      {category.replace(/-/g, " ")}
+                    </button>
                   );
                 })}
               </ul>
@@ -82,8 +112,9 @@ const Menu = () => {
                   setDisplayType={setDisplayType}
                 />
                 <SortSelectOptions
-                  selectedValue={selectedValue}
-                  setSelectedValue={setSelectedValue}
+                  sortBy={sortBy}
+                  setSortBy={setSortBy}
+                  onSubmit={handleSubmit}
                 />
               </div>
               {displayType === "grid" ? (

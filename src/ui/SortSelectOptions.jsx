@@ -1,7 +1,7 @@
 import React from "react";
 import { FormControl, InputLabel, Select, MenuItem } from "@mui/material";
 
-const SortSelectOptions = ({ selectedValue, setSelectedValue }) => {
+const SortSelectOptions = ({ sortBy, setSortBy, onSubmit }) => {
   const options = ["input", "a-z", "z-a", "high", "low"];
 
   return (
@@ -20,13 +20,16 @@ const SortSelectOptions = ({ selectedValue, setSelectedValue }) => {
       <Select
         labelId="demo-simple-select-label"
         id="demo-simple-select"
-        value={selectedValue}
-        onChange={(e) => setSelectedValue(e.target.value)}
+        value={sortBy}
+        onChange={(e) => setSortBy(e.target.value)}
       >
         {options.map((option) => {
           return (
             <MenuItem key={option} value={option}>
-              {option}
+              <button type="submit" onClick={onSubmit}>
+                {option}
+              </button>
+              {/* {option} */}
             </MenuItem>
           );
         })}

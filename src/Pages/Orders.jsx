@@ -8,13 +8,13 @@ const Orders = () => {
   const orders = useLoaderData();
 
   return (
-    <section className="py-16 bg-whitesmoke">
+    <section className="py-16 bg-white">
       <div className="align-element">
         <h3 className="text-2xl font-serif text-brownish-1 font-semibold md:text-3xl lg:text-4xl mb-8  ">
           My Order
         </h3>
         <div className="space-y-6 md:space-y-8">
-          <Table data={order} />
+          <Table data={orders} />
         </div>
       </div>
     </section>

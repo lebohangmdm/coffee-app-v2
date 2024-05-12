@@ -4,12 +4,14 @@ import { getCurrentUser } from "../services/apiAuth";
 import { Form, useActionData, useLoaderData } from "react-router-dom";
 import { isValidEmail, isValidPhone } from "../utils/helpers";
 import Btn from "../ui/Btn";
+import { createComment } from "../services/apiComments";
 
 const Contact = () => {
   const data = useLoaderData();
   const errors = useActionData();
 
-  const { email, fullName } = data?.user_metadata;
+  const email = data?.user_metadata?.email;
+  const fullName = data?.user_metadata?.fullName;
 
   console.log(errors);
 
@@ -55,7 +57,7 @@ const Contact = () => {
                 <input
                   type={"text"}
                   name={"fullName"}
-                  defaultValue={fullName}
+                  defaultValue={fullName || ""}
                   className="py-2  px-4 text-sm bg-transparent w-full rounded-sm focus:outline-none border border-brownish-1 focus:border-brownish-2"
                   required
                 />
@@ -69,7 +71,7 @@ const Contact = () => {
                 <input
                   type={"email"}
                   name={"email"}
-                  defaultValue={email}
+                  defaultValue={email || ""}
                   className="py-2  px-4 text-sm bg-transparent w-full rounded-sm focus:outline-none border border-brownish-1 focus:border-brownish-2"
                   required
                 />
@@ -119,6 +121,8 @@ export const loader = async () => {
 export const action = async ({ request }) => {
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
+  const user = await getCurrentUser();
+  const id = user.id;
 
   const { fullName, email, phone, comment } = data;
 
@@ -155,11 +159,10 @@ export const action = async ({ request }) => {
     email,
     phone,
     comment,
+    user_id: id,
   };
+  await createComment(newComment);
 
-  // const commentObj = await createComment(newComment);
-  // console.log(commentObj);
-  // return commentObj;
   return null;
 };
 

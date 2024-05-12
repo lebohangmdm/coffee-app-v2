@@ -9,7 +9,7 @@ import FormRow from "../ui/FormRow";
 const Profile = () => {
   const [checked, setChecked] = useState(false);
   const data = useLoaderData();
-  const { email, firstName } = data?.user_metadata;
+  const { email, fullName } = data?.user_metadata;
   const errors = useActionData();
   console.log(errors);
 
@@ -29,11 +29,11 @@ const Profile = () => {
             <Form method="POST">
               <div className="space-y-4">
                 <FormRow
-                  label={"First Name"}
+                  label={"Full Name"}
                   type={"text"}
-                  name={"firstName"}
-                  defaultValue={firstName}
-                  error={errors?.firstName}
+                  name={"fullName"}
+                  defaultValue={fullName}
+                  error={errors?.fullName}
                 />
                 <FormRow
                   label={"Email"}
@@ -94,17 +94,14 @@ const Profile = () => {
 export const action = async ({ request }) => {
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
-  const firstName = data?.firstName;
+  const fullName = data?.fullName;
   const password = data?.password;
   const confirmPassword = data?.confirmPassword;
 
   const errors = {};
 
-  if (
-    (firstName && !firstName.length) ||
-    (firstName && firstName.trim() === " ")
-  ) {
-    errors.firstName = "Please provide a valid name";
+  if ((fullName && !fullName.length) || (fullName && fullName.trim() === " ")) {
+    errors.fullName = "Please provide a valid name";
   }
 
   if (password && password.length < 6) {
@@ -122,8 +119,8 @@ export const action = async ({ request }) => {
 
   let user;
 
-  if (firstName) {
-    user = await updateCurrentUser({ firstName });
+  if (fullName) {
+    user = await updateCurrentUser({ fullName });
   }
   if (password) {
     user = await updateCurrentUser({ password });
