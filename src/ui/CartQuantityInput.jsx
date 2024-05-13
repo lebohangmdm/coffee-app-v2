@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { updateQuantity } from "../features/cart/cartSlice";
+import { toast } from "react-hot-toast";
 
-const CartQuantityInput = ({ id, count }) => {
+const CartQuantityInput = ({ id, count, name }) => {
   const [amount, setAmount] = useState(count);
   const dispatch = useDispatch();
 
@@ -10,6 +11,18 @@ const CartQuantityInput = ({ id, count }) => {
     e.preventDefault();
     const quantity = parseInt(amount);
     dispatch(updateQuantity({ id, quantity }));
+    toast.success(`You have updated ${name} from the cart`, {
+      style: {
+        fontSize: "14px",
+        marginTop: "64px",
+        color: "#3c1b08",
+        textTransform: "capitalize",
+      },
+      iconTheme: {
+        primary: "green", // Icon color
+        secondary: "white", // Icon background color
+      },
+    });
   };
 
   const handleChange = (e) => {

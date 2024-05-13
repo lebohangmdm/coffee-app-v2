@@ -1,7 +1,6 @@
-// import { TextField, Button } from "@material-ui/core";
 import { TextField, Button } from "@mui/material";
 import { getCurrentUser } from "../services/apiAuth";
-import { Form, useActionData, useLoaderData } from "react-router-dom";
+import { Form, redirect, useActionData, useLoaderData } from "react-router-dom";
 import { isValidEmail, isValidPhone } from "../utils/helpers";
 import Btn from "../ui/Btn";
 import { createComment } from "../services/apiComments";
@@ -150,10 +149,16 @@ export const action = async ({ request }) => {
     errors.comment = "Your comment cannot be greater than 250 characters";
   }
 
+  if (!user_id) {
+    errors.user = "Please login in";
+    return redirect("/login");
+  }
+
   // return data if we have errors
   if (Object.keys(errors).length) {
     return errors;
   }
+
   const newComment = {
     fullName,
     email,

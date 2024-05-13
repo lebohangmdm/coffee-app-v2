@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getCart, getTotalPrice, removeItem } from "../features/cart/cartSlice";
 import { Link } from "react-router-dom";
 import EmptyCart from "../ui/EmptyCart";
+import { toast } from "react-hot-toast";
 import Btn from "../ui/Btn";
 
 const Cart = () => {
@@ -17,10 +18,25 @@ const Cart = () => {
 
   if (!cart.length) return <EmptyCart />;
 
+  const handleDelete = (coffee) => {
+    dispatch(removeItem(coffee.id));
+    toast.success(`You have removed ${coffee.name} from the cart`, {
+      style: {
+        fontSize: "14px",
+        color: "red",
+        textTransform: "capitalize",
+      },
+      iconTheme: {
+        primary: "red", // Icon color
+        secondary: "white", // Icon background color
+      },
+    });
+  };
+
   return (
     <section className="py-16 bg-light-brown-5">
       <div className="align-element">
-        <h3 className="text-2xl font-serif text-brownish-1 font-semibold md:text-3xl lg:text-4xl mb-8  ">
+        <h3 className="text-2xl  font-serif text-brownish-1 font-semibold md:text-3xl lg:text-4xl mb-8  ">
           Shopping Cart
         </h3>
         <div className="grid items-start lg:grid-cols-1fr-350px gap-12 ">
@@ -28,7 +44,7 @@ const Cart = () => {
             {cart.map((coffee) => {
               return (
                 <div key={coffee.id} className="pt-4">
-                  <div className="flex flex-col space-y-4 md:flex-row md:space-y-0 md:justify-between">
+                  <div className="flex flex-col space-y-4  md:flex-row md:space-y-0 md:justify-between">
                     <div>
                       <p className="mb-4 font-semibold">Item</p>
                       <div className="flex gap-6">
@@ -54,6 +70,7 @@ const Cart = () => {
                         <CartQuantityInput
                           count={coffee.quantity}
                           id={coffee.id}
+                          name={coffee.name}
                         />
                       </div>
                       <div className=" flex flex-col items-center space-y-2 ">
@@ -79,7 +96,7 @@ const Cart = () => {
                     <IconButton
                       aria-label="delete"
                       className="text-brownish-2"
-                      onClick={() => dispatch(removeItem(coffee.id))}
+                      onClick={() => handleDelete(coffee)}
                     >
                       <DeleteIcon />
                     </IconButton>
