@@ -32,6 +32,7 @@ import { loader as contactLoader } from "./Pages/Contact";
 import { action as contactAction } from "./Pages/Contact";
 import { loader as ordersLoader } from "./Pages/Orders";
 import { loader as checkoutLoader } from "./ui/Forms";
+import { Toaster } from "react-hot-toast";
 
 const router = createBrowserRouter([
   {
@@ -72,6 +73,7 @@ const router = createBrowserRouter([
       {
         path: "cart",
         element: <Cart />,
+        errorElement: <SingleError />,
       },
       {
         path: "checkout",
@@ -84,6 +86,7 @@ const router = createBrowserRouter([
         path: "cart/:id",
         element: <ConfigureCoffee />,
         loader: configureLoader,
+        errorElement: <SingleError />,
       },
       {
         path: "orders",
@@ -104,22 +107,53 @@ const router = createBrowserRouter([
         action: updateAction,
         errorElement: <SingleError />,
       },
+      ,
     ],
   },
   {
     path: "register",
     element: <Register />,
     action: registerAction,
+    errorElement: <SingleError />,
   },
   {
     path: "login",
     element: <Login />,
     action: loginAction,
+    errorElement: <SingleError />,
   },
 ]);
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <>
+      <RouterProvider router={router} />;
+      <Toaster
+        position="top-right"
+        gutter={12}
+        containerStyle={{
+          maxWidth: "1152px",
+          marginInline: "auto",
+          marginTop: "52px",
+        }}
+        toastOptions={{
+          success: {
+            duration: 5000,
+          },
+          error: {
+            duration: 5000,
+          },
+          style: {
+            fontSize: "16px",
+            maxWidth: "500px",
+            padding: "8px 16px",
+            backgroundColor: "var(--color-grey-0)",
+            color: "var(--color-grey-700)",
+          },
+        }}
+      />
+    </>
+  );
 }
 
 export default App;

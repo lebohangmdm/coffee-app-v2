@@ -25,6 +25,10 @@ const Cart = () => {
         fontSize: "14px",
         color: "red",
         textTransform: "capitalize",
+        marginTop: "64px",
+        // position: "absolute",
+        // top: "-64px",
+        // right: "0px",
       },
       iconTheme: {
         primary: "red", // Icon color

@@ -22,7 +22,16 @@ const CoffeeDetail = () => {
       unitPrice,
     };
 
+    if (newCoffee.quantity < 1) return;
+
     dispatch(addItem(newCoffee));
+    toast.success(`You have added ${name} to your cart`, {
+      style: {
+        fontSize: "14px",
+        color: "#3c1b08",
+        textTransform: "capitalize",
+      },
+    });
   };
 
   return (

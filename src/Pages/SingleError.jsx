@@ -16,7 +16,7 @@ const SingleError = () => {
         <ul className="mt-4">
           <li className="text-sm list-disc ml-8">
             Go{" "}
-            <Link className="font-bold" to={() => navigate(-1)}>
+            <Link className="font-bold" onClick={() => navigate(-1)}>
               back
             </Link>{" "}
             to the previous page.

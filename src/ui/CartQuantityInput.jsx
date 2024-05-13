@@ -36,7 +36,7 @@ const CartQuantityInput = ({ id, count, name }) => {
     <form onSubmit={handleSubmit}>
       <input
         type="number"
-        className="bg-transparent w-8 p-2 focus:outline-none focus:ring-2 rounded-sm ring-brownish-1 text-center "
+        className="bg-transparent max-w-[48px] lg:maw-w-52  p-2 focus:outline-none focus:ring-2 rounded-sm ring-brownish-1 text-center "
         min={1}
         name="quantity"
         value={amount}

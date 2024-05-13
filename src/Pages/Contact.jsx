@@ -4,6 +4,7 @@ import { Form, redirect, useActionData, useLoaderData } from "react-router-dom";
 import { isValidEmail, isValidPhone } from "../utils/helpers";
 import Btn from "../ui/Btn";
 import { createComment } from "../services/apiComments";
+import { toast } from "react-hot-toast";
 
 const Contact = () => {
   const data = useLoaderData();
@@ -121,7 +122,7 @@ export const action = async ({ request }) => {
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
   const user = await getCurrentUser();
-  const id = user.id;
+  const id = user?.id;
 
   const { fullName, email, phone, comment } = data;
 
@@ -149,9 +150,19 @@ export const action = async ({ request }) => {
     errors.comment = "Your comment cannot be greater than 250 characters";
   }
 
-  if (!user_id) {
+  if (!user) {
     errors.user = "Please login in";
-    return redirect("/login");
+    toast.error("Please login first, before submitting your message", {
+      style: {
+        fontSize: "14px",
+        color: "red",
+        textTransform: "capitalize",
+      },
+      // iconTheme: {
+      //   primary: "red", // Icon color
+      //   secondary: "white", // Icon background color
+      // },
+    });
   }
 
   // return data if we have errors
@@ -159,16 +170,15 @@ export const action = async ({ request }) => {
     return errors;
   }
 
-  const newComment = {
-    fullName,
-    email,
-    phone,
-    comment,
-    user_id: id,
-  };
-  await createComment(newComment);
+  await createComment({ fullName, email, phone, comment, user_id: id });
 
-  return null;
+  return toast.success("Your message has been sent successfully", {
+    style: {
+      fontSize: "14px",
+      color: "#3c1b08",
+      textTransform: "capitalize",
+    },
+  });
 };
 
 export default Contact;
