@@ -1,4 +1,4 @@
-import { Button } from "@mui/material";
+import Btn from "../Btn";
 import React from "react";
 
 const About = () => {
@@ -16,16 +16,14 @@ const About = () => {
               our rarest offerings, you’ve come to the right place.Exceptional
               coffees from around the world
             </p>
-            <Button
-              variant="contained"
-              className="rounded-full bg-black px-4 mt-4"
-            >
+
+            <Btn to={"/menu"} type={"rounded"}>
               Order now
-            </Button>
+            </Btn>
           </div>
 
           <div className="grid grid-cols-2  gap-4 lg:w-[60%] lg:gap-12">
-            <div className="grid  lg:justify-end">
+            <div className="grid  lg:justify-end ">
               <h3 className="text-xl sm:text-2xl font-semibold text-brownish-1 md:text-3xl mb-6">
                 Opening Hours
               </h3>

@@ -9,7 +9,6 @@ import ViewList from "../ui/ViewList";
 
 const Menu = ({ params }) => {
   const data = useLoaderData();
-  console.log(params);
 
   const allCategories = [
     "all",
@@ -42,10 +41,6 @@ const Menu = ({ params }) => {
         : data.filter((coffee) => coffee.category === queryParamValue);
   }
 
-  console.log(queryParamValue, category);
-
-  console.log(coffees);
-
   if (sortBy === "input") coffees = coffees;
   if (sortBy === "a-z")
     coffees = coffees.slice().sort((a, b) => a.name.localeCompare(b.name));
@@ -56,9 +51,9 @@ const Menu = ({ params }) => {
   if (sortBy === "low")
     coffees = coffees.slice().sort((a, b) => a.unitPrice - b.unitPrice);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    searchParams.set("sort", sortBy);
+  const handleChange = (e) => {
+    setSortBy(e.target.value);
+    searchParams.set("sort", e.target.value);
     setSearchParams(searchParams);
   };
 
@@ -111,11 +106,7 @@ const Menu = ({ params }) => {
                   displayType={displayType}
                   setDisplayType={setDisplayType}
                 />
-                <SortSelectOptions
-                  sortBy={sortBy}
-                  setSortBy={setSortBy}
-                  onSubmit={handleSubmit}
-                />
+                <SortSelectOptions sortBy={sortBy} onChange={handleChange} />
               </div>
               {displayType === "grid" ? (
                 <GridList coffees={coffees} />

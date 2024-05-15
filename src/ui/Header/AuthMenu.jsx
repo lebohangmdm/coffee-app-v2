@@ -2,12 +2,12 @@ import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import { useState } from "react";
 import { Avatar, ListSubheader } from "@mui/material";
 import { NavLink, useNavigate } from "react-router-dom";
 import { logout } from "../../services/apiAuth";
+import { useState } from "react";
 
-export default function AuthMenu({ user, auth }) {
+export default function AuthMenu({ user, isAuth, setIsAuth }) {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -18,8 +18,6 @@ export default function AuthMenu({ user, auth }) {
   };
   const navigate = useNavigate();
 
-  console.log(user);
-  [];
   const avatarLetter = user?.fullName
     .split(" ")
     .at(0)
@@ -28,6 +26,7 @@ export default function AuthMenu({ user, auth }) {
 
   const handleLogout = async () => {
     await logout();
+    setIsAuth(null);
     return navigate("/");
   };
 
@@ -41,7 +40,7 @@ export default function AuthMenu({ user, auth }) {
         onClick={handleClick}
         sx={{ color: "#180b03" }}
       >
-        {auth ? (
+        {isAuth ? (
           <Avatar sx={{ backgroundColor: "#463c35" }}>{avatarLetter}</Avatar>
         ) : (
           <AccountCircleIcon />
@@ -71,7 +70,7 @@ export default function AuthMenu({ user, auth }) {
           My Account
         </ListSubheader>
 
-        {auth ? (
+        {isAuth ? (
           <div>
             <NavLink to={"/profile"}>
               <MenuItem

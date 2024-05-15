@@ -3,8 +3,9 @@ import RadioInput from "../ui/RadioInput";
 import Forms from "../ui/Forms";
 import { useSelector } from "react-redux";
 import { getCart, getTotalPrice } from "../features/cart/cartSlice";
-import EmptyCart from "../ui/EmptyCart";
+
 import { getAddress, getPosition } from "../utils/helpers";
+import { useNavigate } from "react-router-dom";
 
 const Checkout = () => {
   const [address, setAddress] = useState("");
@@ -13,6 +14,7 @@ const Checkout = () => {
   const cart = useSelector(getCart);
   const deliverySum = value === "delivery" ? 35 : 0;
   const orderPrice = totalPrice + deliverySum;
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getFullAddress = async () => {
@@ -24,7 +26,7 @@ const Checkout = () => {
     getFullAddress();
   }, []);
 
-  // if (totalPrice === 0) return <EmptyCart />;
+  if (totalPrice === 0) return navigate("/cart");
 
   const order = {
     cart,

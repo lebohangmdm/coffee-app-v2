@@ -32,7 +32,9 @@ const ViewCard = ({ coffee }) => {
           <h3 className="text-xl font-medium font-serif text-brownish-2">
             {coffee.name}
           </h3>
-          <p className="text-xl md:text-3xl font-bold ">R{coffee.unitPrice}</p>
+          <p className="text-xl md:text-3xl font-semibold ">
+            R{coffee.unitPrice}
+          </p>
 
           <p className="text-sm">{coffee.description}</p>
         </div>

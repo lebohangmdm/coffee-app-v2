@@ -15,9 +15,9 @@ const Pagination = ({ totalOrders, pageSize, paginate, currentPage }) => {
             <button
               className={`${
                 currentPage === index + 1
-                  ? " bg-light-brown-2 text-brownish-1"
+                  ? "t bg-light-brown-2 text-brownish-1"
                   : ""
-              }   text-xl rounded-full px-4 py-2 `}
+              }   text-base lg:text-xl rounded-full  px-3 py-1 sm:py-2 md:px-4 md:py-2 `}
               onClick={() => paginate(index + 1)}
             >
               {index + 1}

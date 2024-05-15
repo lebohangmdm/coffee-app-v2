@@ -48,7 +48,7 @@ const CoffeeDetail = () => {
             <p className=" text-sm font-italian md:text-base mb-6 text-brownish-2 ">
               {description}
             </p>
-            <p className="text-lg text-brownish-2 md:text-2xl mb-6 md:mb-10 lg:text-3xl">
+            <p className="text-lg text-brownish-2 md:text-2xl mb-6 md:mb-10 lg:text-3xl font-medium">
               <span className="font-semibold">R</span>
               {unitPrice}
             </p>

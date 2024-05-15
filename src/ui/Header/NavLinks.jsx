@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 
 const links = ["menu", "about", "contact"];
 
-const NavLinks = ({ auth }) => {
+const NavLinks = ({ isAuth }) => {
   return (
     <nav className="">
       <ul className="hidden md:flex items-center gap-8 lg:gap-12 list-none">
@@ -15,7 +15,7 @@ const NavLinks = ({ auth }) => {
             </li>
           );
         })}
-        {auth && (
+        {isAuth && (
           <li key={"orders"}>
             <NavLink to={`/orders`} className={"nav-link"}>
               Orders
