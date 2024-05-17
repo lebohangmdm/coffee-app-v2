@@ -9,8 +9,8 @@ import {
 import { formatDate, isValidPhone, orderNum } from "../utils/helpers";
 import { createOrder } from "../services/apiOrder";
 import store from "../store";
-import { clearCart } from "../features/cart/cartSlice";
 import { getCurrentUser } from "../services/apiAuth";
+import { clearCart } from "../features/cart/cartSlice";
 
 const Forms = ({ order, value, address }) => {
   const disable = value === "collect";
@@ -107,8 +107,6 @@ export const action = async ({ request }) => {
     deliveryCost,
   };
 
-  console.log(order);
-
   const errors = {};
   if (data.phone && !isValidPhone(order.phone))
     errors.phone =
@@ -119,9 +117,10 @@ export const action = async ({ request }) => {
   console.log(errors);
   const newOrder = await createOrder(order);
 
-  store.dispatch(clearCart());
+  // store.dispatch(clearCart());
+  const newOrderId = newOrder[0].id;
 
-  return redirect(`/order/${newOrder[0].id}`);
+  return redirect(`/order/${newOrderId}`);
 };
 
 export const loader = async () => {

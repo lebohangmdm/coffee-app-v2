@@ -17,7 +17,7 @@ export default function MediaCard({ coffee, cart, number }) {
 
   return (
     <>
-      <Link to={`/${coffee.id}`}>
+      <Link to={`/menu/${coffee.id}`}>
         <Card
           sx={{ maxWidth: 300, marginInline: "auto" }}
           className="transform hover:scale-105 transition-all duration-200 mt-4"

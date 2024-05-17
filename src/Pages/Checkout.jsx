@@ -35,7 +35,7 @@ const Checkout = () => {
   };
 
   return (
-    <section className="py-16 bg-light-brown-5">
+    <section className="py-16 ">
       <div className="align-element">
         <h3 className="text-2xl font-serif text-brownish-1 font-semibold md:text-3xl lg:text-4xl mb-8  ">
           Place your Order

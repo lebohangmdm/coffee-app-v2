@@ -10,7 +10,7 @@ const Order = () => {
   const delivery = data.deliveryCost > 0;
   console.log(data.orderTime);
   return (
-    <section className="py-16 bg-white">
+    <section className="py-16">
       <div className="max-w-6xl mx-auto px-4 md:px-8">
         <div className="max-w-4xl mx-auto text-brownish-2 bg-gray-200 p-4 md:p-6 ">
           <h2 className="mb-8 md:mb-12 text-xl md:text-2xl font-semibold">

@@ -1,10 +1,9 @@
 import { Link, useNavigate, useRouteError } from "react-router-dom";
 
 const Error = () => {
-  const error = useRouteError();
-  console.log(error);
-
   const navigate = useNavigate();
+  const error = useRouteError();
+  console.error(error);
 
   return (
     <section className="py-16 height-dvh">

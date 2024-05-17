@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { addItem } from "../features/cart/cartSlice";
 import Btn from "./Btn";
+import { Link } from "react-router-dom";
 
 const ViewCard = ({ coffee }) => {
   const dispatch = useDispatch();
@@ -25,7 +26,9 @@ const ViewCard = ({ coffee }) => {
   "
     >
       <div className="w-[40%] ">
-        <img src={coffee.image} alt={coffee.name} />
+        <Link to={`/menu/${coffee.id}`}>
+          <img src={coffee.image} alt={coffee.name} />
+        </Link>
       </div>
       <div className="w-[60%] ">
         <div className="space-y-3 mb-12">

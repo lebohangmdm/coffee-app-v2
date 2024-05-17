@@ -54,7 +54,7 @@ const router = createBrowserRouter([
         errorElement: <SingleError />,
       },
       {
-        path: "/:id",
+        path: "menu/:id",
         element: <CoffeeDetail />,
         loader: coffeeLoader,
         errorElement: <SingleError />,

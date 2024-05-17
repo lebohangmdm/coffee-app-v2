@@ -31,7 +31,7 @@ export default function MediaCard({ coffee, cart, number }) {
 
   return (
     <Card sx={{ maxWidth: 350, marginInline: "auto" }}>
-      <Link to={`/${coffee.id}`}>
+      <Link to={`/menu/${coffee.id}`}>
         <CardMedia
           sx={{ height: 250, objectFit: "cover" }}
           image={coffee.image}

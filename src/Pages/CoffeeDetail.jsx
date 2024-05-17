@@ -35,11 +35,12 @@ const CoffeeDetail = () => {
   };
 
   return (
-    <section className="py-16  height-vh ">
+    <section className="py-16 bg-red-500">
       <div className="align-element">
         <div className="grid  md:grid-cols-2 gap-8 md:gap-12 lg:gap-16">
           <div>
-            <img src={image} alt={name} className="object-cover" />
+            {/* <img src={image} alt={name} className="object-cover" /> */}
+            <img src={"/pic.jpg"} alt={"mocha"} className="object-cover" />
           </div>
           <div>
             <h3 className="text-2xl font-serif text-brownish-1 font-semibold md:text-3xl lg:text-5xl mb-4">

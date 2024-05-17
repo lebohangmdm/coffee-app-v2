@@ -8,17 +8,14 @@ const AppLayout = () => {
   const user = data?.user_metadata;
   const isAuthenticated = data?.role === "authenticated";
 
-  console.log(data);
-
   const navigation = useNavigation();
   const loading = navigation.state === "loading";
-  // console.log(navigation);
 
   return (
     <>
       {loading && <Loader />}
       <Header user={user} auth={isAuthenticated} />
-      <main className="bg-whitesmoke">
+      <main>
         <Outlet />
       </main>
     </>

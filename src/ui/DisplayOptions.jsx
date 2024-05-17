@@ -11,7 +11,7 @@ const DisplayOptions = ({ displayType, setDisplayType }) => {
   };
 
   const handleGrid = () => {
-    setDisplayType("list");
+    setDisplayType("grid");
     searchParams.set("coffee_view_mode", "grid");
     setSearchParams(searchParams);
   };

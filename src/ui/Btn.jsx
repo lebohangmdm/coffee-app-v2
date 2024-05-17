@@ -5,7 +5,8 @@ const Btn = ({ type, onClick, children, to }) => {
 
   const styles = {
     full:
-      base + " w-full text-center rounded-sm py-1.5 px-1.5  sm:py-2 sm:px-4",
+      base +
+      " w-full block text-center rounded-sm py-1.5 px-1.5  sm:py-2 sm:px-4",
     medium: base + " md:px-6 rounded-sm py-1.5 px-1.5  sm:py-2 sm:px-4",
     base: base,
     rounded:

@@ -2,7 +2,7 @@ import React from "react";
 
 const About = () => {
   return (
-    <section className="pt-16 bg-whitesmoke">
+    <section className="pt-16 ">
       <div className="align-element">
         <div className="flex flex-col-reverse gap-12 lg:flex-row lg:items-center ">
           <div className="lg:w-[50%]">

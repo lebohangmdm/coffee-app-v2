@@ -12,11 +12,11 @@ const Menu = ({ params }) => {
 
   const allCategories = [
     "all",
-    "cold-coffee",
-    "cold-tea",
-    "frappuccino",
     "hot-coffee",
+    "cold-coffee",
+    "frappuccino",
     "hot-tea",
+    "cold-tea",
   ];
   const [category, setCategory] = useState("all");
   const [sortBy, setSortBy] = useState("input");
@@ -108,11 +108,8 @@ const Menu = ({ params }) => {
                 />
                 <SortSelectOptions sortBy={sortBy} onChange={handleChange} />
               </div>
-              {displayType === "grid" ? (
-                <GridList coffees={coffees} />
-              ) : (
-                <ViewList coffees={coffees} />
-              )}
+              {displayType === "grid" && <GridList coffees={coffees} />}
+              {displayType === "list" && <ViewList coffees={coffees} />}
             </div>
           </div>
         </div>

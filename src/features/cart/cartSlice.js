@@ -31,8 +31,8 @@ const cartSlice = createSlice({
         item.totalPrice = item.unitPrice * payload.quantity;
       }
     },
-    clearCart: () => {
-      return initialState;
+    clearCart: (state) => {
+      state.cart = [];
     },
   },
 });
