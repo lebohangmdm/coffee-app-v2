@@ -20,11 +20,17 @@ const SearchBar = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(searchTerm);
+    if (searchTerm) {
+      searchParams.set("search", searchTerm.toLowerCase());
+      setSearchParams(searchParams);
+      navigate(`/menu?search=${searchTerm}`);
+    } else {
+      searchParams.delete("search");
+      setSearchParams(searchParams);
+      navigate(`/menu`);
+    }
 
-    searchParams.set("search", searchTerm.toLowerCase());
-    setSearchParams(searchParams);
     console.log(searchTerm);
-    // navigate(`/menu`);
   };
 
   return (

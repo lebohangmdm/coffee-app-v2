@@ -21,7 +21,6 @@ export const getOrder = async (id) => {
     .select("*")
     .eq("id", id)
     .single();
-
   if (error) {
     throw new Error("Order could not be fetched");
   }

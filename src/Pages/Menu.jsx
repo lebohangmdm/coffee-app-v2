@@ -126,7 +126,7 @@ export const loader = async ({ request }) => {
   // Use URLSearchParams to get the search parameters
   const searchParams = new URLSearchParams(url.search);
   console.log(searchParams);
-  const param = searchParams.get("search");
+  const param = searchParams?.get("search") || "";
   console.log(param);
   const data = await getCoffees(param);
 
