@@ -9,6 +9,7 @@ import Pagination from "./Pagination";
 
 import { formatAddress, formatDate } from "../utils/helpers";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 function createData(id, name, address, quantity, cost, date) {
   return { id, name, address, quantity, cost, date };
@@ -21,11 +22,11 @@ const BasicTable = ({ data }) => {
       (total, item) => total + item.quantity,
       0
     );
-    const date = formatDate(orderTime);
+
     const place =
       address === null ? " pickup at the store" : formatAddress(address);
 
-    return createData(id, name, place, totalQuantity, orderPrice, date);
+    return createData(id, name, place, totalQuantity, orderPrice, orderTime);
   });
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -65,7 +66,7 @@ const BasicTable = ({ data }) => {
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
                 <TableCell component="th" scope="row">
-                  {row.name}
+                  <Link to={`/order/${row.id}`}>{row.name}</Link>
                 </TableCell>
                 <TableCell align="right">{row.address}</TableCell>
                 <TableCell align="right">{row.quantity}</TableCell>

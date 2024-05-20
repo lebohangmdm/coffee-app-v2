@@ -9,7 +9,7 @@ import { useState } from "react";
 const Header = ({ user, auth }) => {
   const [isAuth, setIsAuth] = useState(auth);
   return (
-    <header className="p-6 relative bg-whitesmoke">
+    <header className="p-6 relative bg-[#DDDDDD]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-8 lg:gap-10">

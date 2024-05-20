@@ -5,13 +5,23 @@ import NumberInput from "../ui/NumberInput";
 import { useDispatch } from "react-redux";
 import { addItem } from "../features/cart/cartSlice";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 const CoffeeDetail = () => {
   const dispatch = useDispatch();
   const [amount, setAmount] = useState(1);
 
-  const { id, name, unitPrice, description, image, kj, fat, sugar } =
-    useLoaderData();
+  const {
+    id,
+    name,
+    unitPrice,
+    description,
+    image,
+    kj,
+    fat,
+    sugar,
+    ingredients,
+  } = useLoaderData();
 
   const handleAddItem = () => {
     const newCoffee = {
@@ -35,12 +45,11 @@ const CoffeeDetail = () => {
   };
 
   return (
-    <section className="py-16 bg-red-500">
+    <section className="py-16">
       <div className="align-element">
-        <div className="grid  md:grid-cols-2 gap-8 md:gap-12 lg:gap-16">
+        <div className="grid  md:grid-cols-2 gap-8 md:gap-12 lg:gap-14">
           <div>
-            {/* <img src={image} alt={name} className="object-cover" /> */}
-            <img src={"/pic.jpg"} alt={"mocha"} className="object-cover" />
+            <img src={image} alt={name} className="object-cover mx-auto" />
           </div>
           <div>
             <h3 className="text-2xl font-serif text-brownish-1 font-semibold md:text-3xl lg:text-5xl mb-4">
@@ -61,16 +70,15 @@ const CoffeeDetail = () => {
                 onHandle={handleAddItem}
               />
             </div>
-            <div className="mt-8 flex flex-col space-y-4 md:space-y-0 md:flex-row md:justify-between md:items-center">
+            <div className="mt-8 flex flex-col space-y-4 md:space-y-0 md:flex-row md:justify-between">
               <div className="space-y-2">
                 <h3 className="text-lg font-semibold">Ingredients</h3>
-                <p>Water, Brewed Espresso.Water</p>
+                <p className="font-medium max-w-[250px]">{ingredients}</p>
               </div>
               <div className="space-y-2">
                 <h3 className="text-lg font-semibold">Nutrition</h3>
-                <p className="">
-                  <strong>{kj}</strong>kj, <strong>{sugar}</strong>g sugar,{" "}
-                  <strong>{fat}</strong>g fat
+                <p className="font-bold">
+                  {kj}kj, {sugar}g sugar, {fat}g fat
                 </p>
               </div>
             </div>

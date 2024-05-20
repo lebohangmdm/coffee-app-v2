@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import RadioInput from "../ui/RadioInput";
 import Forms from "../ui/Forms";
 import { useSelector } from "react-redux";

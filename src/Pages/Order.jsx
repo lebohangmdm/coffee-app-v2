@@ -1,14 +1,19 @@
 import { useLoaderData } from "react-router-dom";
 import { getOrder } from "../services/apiOrder";
-import { formatDate } from "../utils/helpers";
 import AccessAlarmsIcon from "@mui/icons-material/AccessAlarms";
+import { useDispatch } from "react-redux";
+import { clearCart } from "../features/cart/cartSlice";
 
 const Order = () => {
   const data = useLoaderData();
   console.log(data);
+
   const totalPrice = data.orderPrice - data.deliveryCost;
   const delivery = data.deliveryCost > 0;
-  console.log(data.orderTime);
+  const dispatch = useDispatch();
+
+  dispatch(clearCart());
+
   return (
     <section className="py-16">
       <div className="max-w-6xl mx-auto px-4 md:px-8">
@@ -31,7 +36,7 @@ const Order = () => {
                   </p>
                 </div>
                 <p className="text-sm flex items-center md:text-lg">
-                  {formatDate(data.orderTime)}
+                  {data.orderTime}
                 </p>
               </div>
             </div>

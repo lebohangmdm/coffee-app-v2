@@ -1,24 +1,18 @@
-import {
-  Form,
-  redirect,
-  useActionData,
-  useLoaderData,
-  useNavigation,
-} from "react-router-dom";
+import { Form, redirect, useLoaderData, useNavigation } from "react-router-dom";
 
 import { formatDate, isValidPhone, orderNum } from "../utils/helpers";
 import { createOrder } from "../services/apiOrder";
 import store from "../store";
 import { getCurrentUser } from "../services/apiAuth";
 import { clearCart } from "../features/cart/cartSlice";
+// import { useDispatch } from "react-redux";
 
 const Forms = ({ order, value, address }) => {
   const disable = value === "collect";
-  const formErrors = useActionData();
   const showAddress = value === "delivery" ? address : "";
   const navigation = useNavigation();
   const submitting = navigation.state === "submitting";
-  console.log(formErrors);
+
   const fullName = useLoaderData();
 
   return (
@@ -92,8 +86,6 @@ export const action = async ({ request }) => {
   const time = new Date();
   const orderTime = formatDate(time);
 
-  console.log(fullName);
-
   // cart,
   const order = {
     user_id: id,
@@ -117,7 +109,6 @@ export const action = async ({ request }) => {
   console.log(errors);
   const newOrder = await createOrder(order);
 
-  // store.dispatch(clearCart());
   const newOrderId = newOrder[0].id;
 
   return redirect(`/order/${newOrderId}`);

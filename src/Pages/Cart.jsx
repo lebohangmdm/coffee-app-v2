@@ -5,14 +5,18 @@ import IconButton from "@mui/material/IconButton";
 import CartQuantityInput from "../ui/CartQuantityInput";
 import { useDispatch, useSelector } from "react-redux";
 import { getCart, getTotalPrice, removeItem } from "../features/cart/cartSlice";
-import { Link } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import EmptyCart from "../ui/EmptyCart";
 import { toast } from "react-hot-toast";
 import Btn from "../ui/Btn";
+import { getCurrentUser } from "../services/apiAuth";
 
 const Cart = () => {
   const cart = useSelector(getCart);
   const totalPrice = useSelector(getTotalPrice);
+  const user = useLoaderData();
+
+  const isAuth = user?.role === "authenticated";
 
   const dispatch = useDispatch();
 
@@ -38,7 +42,7 @@ const Cart = () => {
   };
 
   return (
-    <section className="py-16 bg-light-brown-5 ">
+    <section className="py-16">
       <div className="align-element">
         <h3 className="text-2xl  font-serif text-brownish-1 font-semibold md:text-3xl lg:text-4xl mb-8  ">
           Shopping Cart
@@ -55,7 +59,7 @@ const Cart = () => {
                         <img
                           src={coffee.image}
                           alt={coffee.name}
-                          className="w-[150px] h-[150px]"
+                          className="w-[150px] h-[150px] object-contain"
                         />
                         <p className="text-lg font-serif md:text-xl lg:text-3xl max-w-64">
                           {coffee.name}
@@ -126,15 +130,27 @@ const Cart = () => {
               </div>
             </div>
             <div className="mt-6">
-              <Btn to={"/checkout"} type={"full"}>
-                proceed to order
-              </Btn>
+              {isAuth ? (
+                <Btn to={"/checkout"} type={"full"}>
+                  proceed to order
+                </Btn>
+              ) : (
+                <Btn to={"/login"} type={"full"}>
+                  Please login
+                </Btn>
+              )}
             </div>
           </div>
         </div>
       </div>
     </section>
   );
+};
+
+export const loader = async () => {
+  const user = await getCurrentUser();
+
+  return user;
 };
 
 export default Cart;

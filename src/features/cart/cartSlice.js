@@ -4,9 +4,13 @@ const initialState = {
   cart: [],
 };
 
+// const getCartFromLocalStorage = () => {
+//   return JSON.parse(localStorage.getItem("cart")) || initialState;
+// };
+
 const cartSlice = createSlice({
   name: "cart",
-  initialState,
+  initialState: initialState,
   reducers: {
     addItem: (state, action) => {
       const { id, quantity, unitPrice } = action.payload;

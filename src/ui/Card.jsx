@@ -44,7 +44,7 @@ export default function MediaCard({ coffee, cart, number }) {
             gutterBottom
             variant="h5"
             component="div"
-            className="font-serif hover:underline underline-offset-2"
+            className="font-serif hover:underline underline-offset-2 capitalize"
           >
             {coffee.name}
           </Typography>

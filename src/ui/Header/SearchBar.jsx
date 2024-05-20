@@ -1,13 +1,12 @@
 import { TextField, IconButton, InputAdornment } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { useState } from "react";
-// import { getCoffeeByName } from "../../services/apiCoffee";
-import { useNavigate } from "react-router-dom";
-import { getCoffees } from "../../services/apiCoffee";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 const SearchBar = () => {
   const [searchVisible, setSearchVisible] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+  const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
 
   const toggleSearch = () => {
@@ -21,9 +20,11 @@ const SearchBar = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(searchTerm);
-    if (!searchTerm) return;
-    await getCoffees(searchTerm);
-    navigate("/menu");
+
+    searchParams.set("search", searchTerm.toLowerCase());
+    setSearchParams(searchParams);
+    console.log(searchTerm);
+    // navigate(`/menu`);
   };
 
   return (

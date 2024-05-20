@@ -6,8 +6,9 @@ import { useLoaderData, useSearchParams } from "react-router-dom";
 import { useState } from "react";
 import GridList from "../ui/GridList";
 import ViewList from "../ui/ViewList";
+import NoResults from "../ui/NoResults";
 
-const Menu = ({ params }) => {
+const Menu = () => {
   const data = useLoaderData();
 
   const allCategories = [
@@ -22,9 +23,8 @@ const Menu = ({ params }) => {
   const [sortBy, setSortBy] = useState("input");
   const [displayType, setDisplayType] = useState("grid");
   const [searchParams, setSearchParams] = useSearchParams();
+  const search = searchParams.get("search");
   const queryParamValue = searchParams.get("category");
-
-  console.log(queryParamValue);
 
   let coffees;
   if (category) {
@@ -108,6 +108,7 @@ const Menu = ({ params }) => {
                 />
                 <SortSelectOptions sortBy={sortBy} onChange={handleChange} />
               </div>
+              {!coffees.length && <NoResults search={search} />}
               {displayType === "grid" && <GridList coffees={coffees} />}
               {displayType === "list" && <ViewList coffees={coffees} />}
             </div>
@@ -120,8 +121,14 @@ const Menu = ({ params }) => {
 
 export default Menu;
 
-export const loader = async () => {
-  const data = await getCoffees();
+export const loader = async ({ request }) => {
+  const url = new URL(request.url);
+  // Use URLSearchParams to get the search parameters
+  const searchParams = new URLSearchParams(url.search);
+  console.log(searchParams);
+  const param = searchParams.get("search");
+  console.log(param);
+  const data = await getCoffees(param);
 
   return data;
 };

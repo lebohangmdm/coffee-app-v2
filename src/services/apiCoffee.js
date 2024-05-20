@@ -2,13 +2,15 @@ import supabase from "./supabase";
 
 export async function getCoffees(name) {
   // if (name) {
-  //   let { data, error } = await supabase
-  //     .from("coffees")
-  //     .select("*")
-  //     .eq("name", name);
+  //   let { data, error } =
   // }
 
-  let { data, error } = await supabase.from("coffees").select("*");
+  let { data, error } = name
+    ? await supabase.from("coffees").select("*").eq("name", name)
+    : await supabase.from("coffees").select("*");
+
+  console.log(name);
+  console.log(data);
 
   if (error) {
     // console.error(error);
@@ -31,20 +33,6 @@ export async function getCoffee(id) {
   }
 
   return data;
-}
-
-export async function getCoffeeByName(name) {
-  const { data, error } = await supabase
-    .from("coffees")
-    .select("name")
-    .eq("name", name);
-
-  if (error) {
-    console.error(error);
-    throw new Error("Could not load the coffee");
-  }
-
-  return name;
 }
 
 // create TABLE USERS (

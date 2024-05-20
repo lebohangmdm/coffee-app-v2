@@ -25,8 +25,8 @@ export default function AuthMenu({ user, isAuth, setIsAuth }) {
     .toUpperCase();
 
   const handleLogout = async () => {
-    await logout();
     setIsAuth(null);
+    await logout();
     return navigate("/");
   };
 

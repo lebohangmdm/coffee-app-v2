@@ -29,7 +29,9 @@ export default function MediaCard({ coffee, cart, number }) {
             className="object-cover"
           />
           <CardContent>
-            <p className="text-lg font-medium font-serif mb-2">{coffee.name}</p>
+            <p className="text-lg font-medium font-serif mb-2 capitalize">
+              {coffee.name}
+            </p>
 
             <Typography variant="body2" color="text.secondary">
               {description}

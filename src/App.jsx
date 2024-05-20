@@ -32,6 +32,7 @@ import { loader as contactLoader } from "./Pages/Contact";
 import { action as contactAction } from "./Pages/Contact";
 import { loader as ordersLoader } from "./Pages/Orders";
 import { loader as checkoutLoader } from "./ui/Forms";
+import { loader as cartLoader } from "./Pages/Cart";
 import { Toaster } from "react-hot-toast";
 
 const router = createBrowserRouter([
@@ -73,6 +74,7 @@ const router = createBrowserRouter([
       {
         path: "cart",
         element: <Cart />,
+        loader: cartLoader,
         errorElement: <SingleError />,
       },
       {
@@ -107,7 +109,9 @@ const router = createBrowserRouter([
         action: updateAction,
         errorElement: <SingleError />,
       },
-      ,
+      {
+        path: "logout",
+      },
     ],
   },
   {

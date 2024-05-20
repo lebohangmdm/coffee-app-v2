@@ -1,5 +1,3 @@
-import React from "react";
-
 const About = () => {
   return (
     <section className="pt-16 ">
@@ -27,7 +25,7 @@ const About = () => {
           </div>
           <div className="lg:w-[50%]">
             <img
-              src="/about.webp"
+              src="https://drelayajmkgamglguukd.supabase.co/storage/v1/object/public/images/about.webp"
               alt="coffe beans and cup of coffee"
               className="object-cover"
             />
