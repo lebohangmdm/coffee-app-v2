@@ -7,7 +7,7 @@ const Pagination = ({ totalOrders, pageSize, paginate, currentPage }) => {
   );
 
   return (
-    <div className="my-4">
+    <div className="my-4 md:mt-6">
       {/* Display items for the current page */}
       <ul className="flex justify-center gap-2">
         {pageNumbers.map((_, index) => (

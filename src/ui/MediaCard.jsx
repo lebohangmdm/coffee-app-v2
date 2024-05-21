@@ -6,7 +6,6 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Link } from "react-router-dom";
-import Btn from "./Btn";
 
 export default function MediaCard({ coffee, cart, number }) {
   const [showMore, setShowMore] = useState(false);

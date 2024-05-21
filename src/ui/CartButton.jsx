@@ -8,7 +8,7 @@ const CartButton = ({ onClick }) => {
       variant="contained"
       color="primary"
       startIcon={<ShoppingCartIcon />}
-      className="text-base rounded-md font-medium  uppercase py-1 px-4  bg-brownish-1 text-white hover:border-brownish-2 transition-all duration-160"
+      className="text-base rounded-md font-medium  uppercase py-1.5 px-4  sm:py-2  bg-brownish-1 text-white hover:border-brownish-2 transition-all duration-160"
       onClick={onClick}
     >
       Update your cart

@@ -86,7 +86,7 @@ export default function AuthMenu({ user, isAuth, setIsAuth }) {
                 my profile
               </MenuItem>
             </NavLink>
-            <NavLink to={"/logout"} onClick={handleLogout}>
+            <NavLink onClick={handleLogout}>
               <MenuItem
                 onClick={handleClose}
                 sx={{

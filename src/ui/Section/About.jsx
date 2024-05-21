@@ -1,5 +1,4 @@
 import Btn from "../Btn";
-import React from "react";
 
 const About = () => {
   return (

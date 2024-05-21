@@ -2,10 +2,7 @@ import { Form, redirect, useLoaderData, useNavigation } from "react-router-dom";
 
 import { formatDate, isValidPhone, orderNum } from "../utils/helpers";
 import { createOrder } from "../services/apiOrder";
-import store from "../store";
 import { getCurrentUser } from "../services/apiAuth";
-import { clearCart } from "../features/cart/cartSlice";
-// import { useDispatch } from "react-redux";
 
 const Forms = ({ order, value, address }) => {
   const disable = value === "collect";
@@ -86,7 +83,6 @@ export const action = async ({ request }) => {
   const time = new Date();
   const orderTime = formatDate(time);
 
-  // cart,
   const order = {
     user_id: id,
     name: fullName,

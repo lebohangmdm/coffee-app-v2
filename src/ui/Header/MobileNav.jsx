@@ -1,17 +1,26 @@
 import { IconButton, Toolbar } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { logout } from "../../services/apiAuth";
 
-const MobileNav = ({ isAuth }) => {
+const MobileNav = ({ isAuth, setIsAuth }) => {
   const [showMenu, setShowMenu] = useState(false);
   const [showMenuLinks, setShowMenuLinks] = useState(false);
+  const navigate = useNavigate();
 
   const style = ({ isActive }) => {
     return isActive
       ? "visited:text-brownish-1 active:text-brownish-1  mobile-nav-link "
       : "mobile-nav-link";
   };
+
+  const logoutHandler = async () => {
+    setIsAuth(null);
+    await logout();
+    navigate("/");
+  };
+
   return (
     <div className="md:hidden mr-3">
       <Toolbar>
@@ -89,7 +98,7 @@ const MobileNav = ({ isAuth }) => {
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to="/logout" className={style}>
+                  <NavLink onClick={logoutHandler} className={style}>
                     Logout
                   </NavLink>
                 </li>

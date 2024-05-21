@@ -4,8 +4,6 @@ const RadioInput = ({ value, setValue }) => {
     { value: "delivery", label: "delivery" },
   ];
 
-  // console.log(value);
-
   return (
     <div className="mb-8 bg-transparent  ">
       <p className="text-sm text-brownish-2 font-medium uppercase mb-2">

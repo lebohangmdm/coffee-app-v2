@@ -18,7 +18,7 @@ const Profile = () => {
   };
 
   return (
-    <section className="py-16 bg-white">
+    <section className="py-16 height-dvh">
       <div className="align-element">
         <div className="grid md:grid-cols-2 gap-8 md:gap-12 lg:gap-16">
           <div className="items-start">

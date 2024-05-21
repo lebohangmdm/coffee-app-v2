@@ -42,7 +42,7 @@ const BasicTable = ({ data }) => {
   };
 
   return (
-    <div>
+    <div className="md:space-y4">
       <div className="flex items-center justify-between mb-2">
         <p className="text-sm">
           Total order: <strong>{data.length}</strong>

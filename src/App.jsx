@@ -109,9 +109,6 @@ const router = createBrowserRouter([
         action: updateAction,
         errorElement: <SingleError />,
       },
-      {
-        path: "logout",
-      },
     ],
   },
   {
@@ -131,7 +128,7 @@ const router = createBrowserRouter([
 function App() {
   return (
     <>
-      <RouterProvider router={router} />;
+      <RouterProvider router={router} />
       <Toaster
         position="top-right"
         gutter={12}

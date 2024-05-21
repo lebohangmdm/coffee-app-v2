@@ -1,11 +1,8 @@
 import { Link, useNavigate, useRouteError } from "react-router-dom";
-import Error from "./Error";
 
 const SingleError = () => {
   const navigate = useNavigate();
   const error = useRouteError();
-
-  // if (error.code === "22PO2") return <Error />;
 
   console.log(error);
   return (

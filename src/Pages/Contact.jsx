@@ -1,6 +1,5 @@
-import { TextField, Button } from "@mui/material";
 import { getCurrentUser } from "../services/apiAuth";
-import { Form, redirect, useActionData, useLoaderData } from "react-router-dom";
+import { Form, useActionData, useLoaderData } from "react-router-dom";
 import { isValidEmail, isValidPhone } from "../utils/helpers";
 import Btn from "../ui/Btn";
 import { createComment } from "../services/apiComments";
@@ -12,8 +11,6 @@ const Contact = () => {
 
   const email = data?.user_metadata?.email;
   const fullName = data?.user_metadata?.fullName;
-
-  console.log(errors);
 
   return (
     <section className="py-16">
