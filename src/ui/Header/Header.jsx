@@ -5,11 +5,12 @@ import NavLinks from "./NavLinks";
 import AuthMenu from "./AuthMenu";
 import CartIcon from "./CartIcon";
 import { useState } from "react";
+import MobileCartIcon from "./MobileCartIcon";
 
 const Header = ({ user, auth }) => {
   const [isAuth, setIsAuth] = useState(auth);
   return (
-    <header className="p-6 relative bg-[#DDDDDD]">
+    <header className="py-6 relative bg-[#DDDDDD]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-8 lg:gap-10">
@@ -21,8 +22,10 @@ const Header = ({ user, auth }) => {
             <AuthMenu user={user} isAuth={isAuth} setIsAuth={setIsAuth} />
             <CartIcon />
           </div>
-
-          <MobileNav />
+          <div className="flex items-center md:hidden">
+            <MobileNav isAuth={isAuth} />
+            <MobileCartIcon />
+          </div>
         </div>
       </div>
     </header>

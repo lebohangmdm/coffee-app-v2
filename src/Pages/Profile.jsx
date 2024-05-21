@@ -20,7 +20,7 @@ const Profile = () => {
   return (
     <section className="py-16 bg-white">
       <div className="align-element">
-        <div className="grid md:grid-cols-2 md:gap-12 lg:gap-16">
+        <div className="grid md:grid-cols-2 gap-8 md:gap-12 lg:gap-16">
           <div className="items-start">
             <h3 className="text-xl font-serif text-brownish-1 font-semibold md:text-2xl ">
               Account Information

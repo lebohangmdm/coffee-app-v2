@@ -4,11 +4,11 @@ import { useSelector } from "react-redux";
 import { getTotalQuantity } from "../../features/cart/cartSlice";
 import { Link } from "react-router-dom";
 
-const CartIcon = () => {
+const MobileCartIcon = () => {
   const quantity = useSelector(getTotalQuantity);
 
   return (
-    <Link to={"cart"}>
+    <Link to={"cart"} className="absolute right-2">
       <IconButton color="inherit">
         <Badge badgeContent={quantity} color="error">
           <ShoppingCartIcon />
@@ -18,4 +18,4 @@ const CartIcon = () => {
   );
 };
 
-export default CartIcon;
+export default MobileCartIcon;

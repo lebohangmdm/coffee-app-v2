@@ -3,7 +3,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 
-const MobileNav = () => {
+const MobileNav = ({ isAuth }) => {
   const [showMenu, setShowMenu] = useState(false);
   const [showMenuLinks, setShowMenuLinks] = useState(false);
 
@@ -13,7 +13,7 @@ const MobileNav = () => {
       : "mobile-nav-link";
   };
   return (
-    <div className="md:hidden">
+    <div className="md:hidden mr-3">
       <Toolbar>
         <IconButton
           edge="start"
@@ -71,6 +71,29 @@ const MobileNav = () => {
                   </NavLink>
                 </li>
               </ul>
+            ) : isAuth ? (
+              <ul className="space-y-2 divide-y divide-amber-950">
+                <li>
+                  <NavLink to="/profile" className={style}>
+                    My Account
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="/orders" className={style}>
+                    My Orders
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="/contact" className={style}>
+                    Contact
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="/logout" className={style}>
+                    Logout
+                  </NavLink>
+                </li>
+              </ul>
             ) : (
               <ul className="space-y-2 divide-y divide-amber-950">
                 <li>
@@ -85,7 +108,7 @@ const MobileNav = () => {
                 </li>
                 <li>
                   <NavLink to="/about" className={style}>
-                    About us
+                    About Us
                   </NavLink>
                 </li>
               </ul>
